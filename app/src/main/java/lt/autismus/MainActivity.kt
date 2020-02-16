@@ -1,12 +1,12 @@
 package lt.autismus
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
+import dagger.android.support.DaggerAppCompatActivity
 import lt.autismus.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
