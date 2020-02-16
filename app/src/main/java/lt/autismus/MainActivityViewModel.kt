@@ -1,4 +1,6 @@
 package lt.autismus
 
-class MainActivityViewModel {
+import androidx.lifecycle.ViewModel
+
+class MainActivityViewModel : ViewModel() {
 }
