@@ -1,4 +1,4 @@
-package lt.autismus
+package lt.autismus.frontScreen
 
 import androidx.lifecycle.ViewModel
 
