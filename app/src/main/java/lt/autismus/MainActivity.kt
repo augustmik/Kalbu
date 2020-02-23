@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import dagger.android.support.DaggerAppCompatActivity
 import lt.autismus.databinding.ActivityMainBinding
 import lt.autismus.settings.SettingsActivity
+import lt.autismus.story.StoryActivity
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -25,6 +26,8 @@ class MainActivity : DaggerAppCompatActivity() {
 
         binding.createCardButton.setOnClickListener {
             //launches create a card window
+            val intent = Intent(this, StoryActivity::class.java)
+            startActivity(intent)
         }
         binding.settingsButton.setOnClickListener {
             //launches settings window
