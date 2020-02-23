@@ -28,20 +28,22 @@
                     android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/edit_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/create_card_button"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     app:srcCompat="@drawable/ic_mode_edit_black_24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     />
                 <ImageView
                     android:id="@+id/settings_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     app:srcCompat="@drawable/ic_settings_black_24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>

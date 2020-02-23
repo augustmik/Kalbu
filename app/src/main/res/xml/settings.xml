@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreferenceCompat
+        app:key="parental_mode"
+        app:summary="Išjungia tokį funkcionalumą kaip naujų kortelių kūrimas ir tt."
+        app:title="Tėvo rėžimas" />
+
+    <Preference
+        app:key="about"
+        app:title="@string/settings_about" />
+</PreferenceScreen>

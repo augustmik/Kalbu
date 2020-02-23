@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Autismus</string>
+    <string name="settings_parental_mode">Tėvo rėžimas</string>
+    <string name="settings_about">Apie</string>
 </resources>

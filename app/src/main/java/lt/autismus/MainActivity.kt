@@ -1,10 +1,12 @@
 package lt.autismus
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
 import dagger.android.support.DaggerAppCompatActivity
 import lt.autismus.databinding.ActivityMainBinding
+import lt.autismus.settings.SettingsActivity
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -20,5 +22,14 @@ class MainActivity : DaggerAppCompatActivity() {
             false
         )
         setContentView(binding.root)
+
+        binding.createCardButton.setOnClickListener {
+            //launches create a card window
+        }
+        binding.settingsButton.setOnClickListener {
+            //launches settings window
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
