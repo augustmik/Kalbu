@@ -6,8 +6,12 @@
         <variable
             name="card"
             type="lt.autismus.singleUnits.SingleCard"/>
+        <variable
+            name="card2"
+            type="lt.autismus.singleUnits.SingleCard"/>
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -30,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/now_tv"
             app:layout_constraintVertical_chainStyle="packed"
-            app:srcCompat="@drawable/ic_image_black_24dp" />
+            app:srcCompat="@{card.image}" />
 
         <ImageView
             android:id="@+id/arrow_iv"
@@ -62,6 +66,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/later_tv"
             app:layout_constraintVertical_chainStyle="packed"
-            app:srcCompat="@drawable/ic_image_black_24dp" />
+            app:srcCompat="@{card2.image}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

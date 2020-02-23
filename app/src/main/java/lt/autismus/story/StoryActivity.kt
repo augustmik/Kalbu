@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import lt.autismus.R
 import lt.autismus.databinding.ActivityStoryBinding
+import lt.autismus.singleUnits.SingleCard
 
 class StoryActivity : AppCompatActivity() {
 
@@ -20,5 +21,7 @@ class StoryActivity : AppCompatActivity() {
             false)
 
         setContentView(binding.root)
+
+        binding.card = SingleCard()
     }
 }

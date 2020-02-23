@@ -25,9 +25,8 @@ class DataBindingAdapter {
     fun setImageDrawable(view: ImageView, drawable: Drawable?) {
         view.setImageDrawable(drawable)
     }
-
-    @BindingAdapter("android:src")
-    fun setImageResource(imageView: ImageView, resource: Int) {
-        imageView.setImageResource(resource)
-    }
+}
+@BindingAdapter("app:srcCompat")
+fun setImageResource(imageView: ImageView, resource: Int) {
+    imageView.setImageResource(resource)
 }
