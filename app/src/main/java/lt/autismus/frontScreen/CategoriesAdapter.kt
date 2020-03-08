@@ -1,6 +1,8 @@
 package lt.autismus.frontScreen
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -47,11 +49,16 @@ class CategoriesAdapter (
 
         fun bind(card: SingleCard, context: Context) {
             binding.card = card
-            Glide.with(context)
-                .asBitmap()
-                .load(Base64.decode(card.image, Base64.DEFAULT))
-                .placeholder(R.drawable.ic_no_photo)
-                .into(binding.cardImage)
+//            Glide.with(context)
+//                .asBitmap()
+//                .load(Base64.decode(card.image, Base64.DEFAULT))
+//                .placeholder(R.drawable.ic_no_photo)
+//                .into(binding.cardImage)
+            val decoded = Base64.decode(card.image, Base64.DEFAULT)
+            val bm = BitmapFactory.decodeByteArray(decoded, 0, decoded.size)
+            binding.cardImage.setImageBitmap(bm)
+//            byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT)
+//            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length)
         }
     }
 

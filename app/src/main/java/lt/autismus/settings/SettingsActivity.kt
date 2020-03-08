@@ -101,7 +101,7 @@ class SettingsActivity : DaggerAppCompatActivity(), DialogListener {
             val byteArrayOut = ByteArrayOutputStream()
             selectedImageBM.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOut)
             val byteA = byteArrayOut.toByteArray()
-            imagesB64.add(Base64.encodeToString(byteA, 0))
+            imagesB64.add(Base64.encodeToString(byteA, Base64.DEFAULT))
         }
         return imagesB64
     }
