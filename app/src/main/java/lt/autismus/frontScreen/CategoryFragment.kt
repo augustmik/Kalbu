@@ -8,12 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
+import dagger.android.support.DaggerFragment
 import lt.autismus.R
 
 import lt.autismus.databinding.FragmentItemListBinding
+import lt.autismus.repository.CardsRepo
 import lt.autismus.singleUnits.SingleCard
+import javax.inject.Inject
 
-class CategoryFragment : Fragment() {
+class CategoryFragment : DaggerFragment() {
+
+    @Inject
+    lateinit var cardsRepo: CardsRepo
 
     lateinit var binding : FragmentItemListBinding
     private val numberOfColumns = 1
@@ -38,7 +44,9 @@ class CategoryFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), numberOfColumns)
             adapter =
                 CategoriesAdapter(
-                    mutableListOf(SingleCard(), SingleCard())
+                    cardsRepo.allCards,
+                    context
+                    //mutableListOf(SingleCard(), SingleCard())
                 )
         }
     }

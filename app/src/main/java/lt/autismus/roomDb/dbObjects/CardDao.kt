@@ -12,7 +12,7 @@ interface CardDao {
     fun insertAll(cards: List<CardDB>)
 //    @Query("SELECT * FROM Players WHERE idTeam = (:teamId)")
 //    fun loadAllByTeamId(teamId: Int): List<PlayerDB>
-//
+
 //    @Delete
 //    fun delete(user: PlayerDB)
 }

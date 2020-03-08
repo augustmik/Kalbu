@@ -14,7 +14,9 @@ import javax.inject.Singleton
         ActivityBindingModule::class,
         CustomViewModelFactoryModule::class,
         CustomViewModelModule::class,
-        AppModule::class
+        AppModule::class,
+        RepoModule::class,
+        FragmentModule::class
     ]
 )
 

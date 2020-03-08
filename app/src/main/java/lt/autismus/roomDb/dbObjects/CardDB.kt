@@ -25,3 +25,13 @@ fun List<SingleCard>.asListCardDB() : List<CardDB>{
         )
     }
 }
+
+fun List<CardDB>.asListCard() : List<SingleCard>{
+    return this.map {
+        SingleCard(
+            id = it.idCard ?: 0,
+            title = it.textCard,
+            image = it.imageCardB64
+        )
+    }
+}
