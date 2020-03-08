@@ -3,9 +3,11 @@ package lt.autismus.roomDb
 import android.content.Context
 import androidx.room.Room
 import lt.autismus.roomDb.dbObjects.CardDB
+import javax.inject.Singleton
 
+@Singleton
 class RoomDBService (context: Context) {
-    val db = Room.databaseBuilder(
+    private val db = Room.databaseBuilder(
         context,
         AppDatabase::class.java, "nba_info_db"
     ).build()

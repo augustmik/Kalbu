@@ -1,6 +1,7 @@
 package lt.autismus.settings
 
 import android.app.Activity
+import android.content.ClipData
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -9,9 +10,11 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import lt.autismus.PICKFILE_REQUEST_CODE
 import lt.autismus.R
-import java.io.File
+
 
 class SettingsFragment : PreferenceFragmentCompat() {
+
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
     }
@@ -24,23 +27,39 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun selectImageFolder() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+//        startActivityForResult(Intent.createChooser(intent, 'Select Picture'), PICK_IMAGE)
         startActivityForResult(intent, PICKFILE_REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == PICKFILE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                Log.i("selected result", data?.dataString)
-                loadImagesToList(data?.data)
+
+                Log.i("selected resultData", data?.data.toString())
+                Log.i("selected resultClip", data?.clipData.toString())
+                if (data?.data == null) {
+                    sendImagesToActivity(data?.data!!)
+                } else {
+                    sendImagesToActivity(data.clipData!!)
+                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    fun loadImagesToList(folderUri: Uri?){
-        val dir = File(folderUri.toString())
-        val imageFiles =  listOf(dir.listFiles())
+    private fun sendImagesToActivity(image: Uri){
+        (requireActivity() as SettingsActivity).sendImagesToDB(listOf(image))
+    }
 
+    private fun sendImagesToActivity(images: ClipData){
+        val imagesL = mutableListOf<Uri>()
+        for (i in 0..images.itemCount){
+            val uri = images.getItemAt(i).uri
+            imagesL.add(uri)
+        }
+        (requireActivity() as SettingsActivity).sendImagesToDB(imagesL)
     }
 }
