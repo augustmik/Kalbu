@@ -12,9 +12,7 @@ class RoomDBService (context: Context) {
         AppDatabase::class.java, "nba_info_db"
     ).build()
 
-    suspend fun addAllCards() : List<CardDB>{
-        // TODO get images from file and generate card objects
-        val cards = listOf<CardDB>()
+    suspend fun addAllCards(cards : List<CardDB>) : List<CardDB>{
         db.cardsDao().insertAll(cards)
         return db.cardsDao().getAll()
     }

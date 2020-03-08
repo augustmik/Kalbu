@@ -30,16 +30,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-//        startActivityForResult(Intent.createChooser(intent, 'Select Picture'), PICK_IMAGE)
         startActivityForResult(intent, PICKFILE_REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == PICKFILE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-
-                Log.i("selected resultData", data?.data.toString())
-                Log.i("selected resultClip", data?.clipData.toString())
+//                Log.i("selected resultData", data?.data.toString())
+//                Log.i("selected resultClip", data?.clipData.toString())
                 if (data?.data != null) {
                     sendImagesToActivity(data.data!!)
                 } else {

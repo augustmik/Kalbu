@@ -1,11 +1,10 @@
 package lt.autismus.settings
 
-import android.app.Dialog
 import android.net.Uri
 import lt.autismus.singleUnits.SingleCard
 
-class DialogHandler (private val callback: DialogListener)  {
-    val cards = mutableListOf<SingleCard>()
+class DialogHandler (private val callback: DialogListener, val settingsViewModel: SettingsViewModel)  {
+    private val cards = mutableListOf<SingleCard>()
     lateinit var images: List<Uri>
     var currentItem = 0
 
@@ -22,7 +21,7 @@ class DialogHandler (private val callback: DialogListener)  {
             val card = SingleCard()
             cards.add(card)
             callback.setupDialog(images[currentItem], card)
-        }
+        } else callback.setupDialogLast(images, cards)
     }
 
 }

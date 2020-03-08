@@ -1,8 +1,7 @@
 package lt.autismus.singleUnits
 
-import lt.autismus.R
-
 class SingleCard {
-    var image: Int = R.drawable.ic_image_black_24dp
+    var id: Int = 0
+    var image: String? = null
     var title: String? = null
 }

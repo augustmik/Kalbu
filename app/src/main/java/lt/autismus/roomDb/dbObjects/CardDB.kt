@@ -3,10 +3,11 @@ package lt.autismus.roomDb.dbObjects
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import lt.autismus.singleUnits.SingleCard
 
 @Entity(tableName = "Cards")
 data class CardDB (
-    @field:PrimaryKey
+    @field:PrimaryKey(autoGenerate = true)
     val idCard : Int?,
 
     @field:ColumnInfo(name = "textCard")
@@ -15,3 +16,12 @@ data class CardDB (
     @field:ColumnInfo(name = "imageCardB64")
     val imageCardB64 : String?
 )
+fun List<SingleCard>.asListCardDB() : List<CardDB>{
+    return this.map {
+        CardDB(
+            idCard = it.id,
+            textCard = it.title,
+            imageCardB64 = it.image
+        )
+    }
+}

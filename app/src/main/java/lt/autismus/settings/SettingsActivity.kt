@@ -29,8 +29,6 @@ class SettingsActivity : DaggerAppCompatActivity(), DialogListener {
     @Inject
     lateinit var factory: CustomViewModelFactory
 
-//    private val createCardDialog: Dialog by lazy { Dialog(this) }
-
     private lateinit var dialogBinding: DialogAddNameToCardBinding
     private lateinit var dialogHandler : DialogHandler
 
@@ -61,12 +59,12 @@ class SettingsActivity : DaggerAppCompatActivity(), DialogListener {
 //        val source = ImageDecoder.createSource(this.contentResolver, folderUri)
 //        val bitmap = ImageDecoder.decodeBitmap(source)
         setupCardsFromImages(images)
-        encodeBitMapToBase64(images)
-        settingsViewModel.putImagesToDB(encodeBitMapToBase64(images))
+//        encodeBitMapToBase64(images)
+//        settingsViewModel.putImagesToDB(encodeBitMapToBase64(images))
     }
 
     private fun setupCardsFromImages(images: List<Uri>) {
-        dialogHandler = DialogHandler(this)
+        dialogHandler = DialogHandler(this, settingsViewModel)
         dialogHandler.setupFirst(images)
     }
 
@@ -81,10 +79,8 @@ class SettingsActivity : DaggerAppCompatActivity(), DialogListener {
         dialogBinding.card = cardItem
         dialogBinding.cardIv.setImageURI(image)
         createCardDialog.setContentView(dialogBinding.root)
-//        createCardDialog.
         createCardDialog.show()
         dialogBinding.acceptButton.setOnClickListener {
-//            it.
             createCardDialog.dismiss()
             dialogHandler.loadNext()
         }
@@ -93,9 +89,8 @@ class SettingsActivity : DaggerAppCompatActivity(), DialogListener {
             dialogHandler.loadNext()
         }
     }
-    override fun setupDialogLast(image: Uri, cardItem: SingleCard) {
-        dialogBinding.card = cardItem
-        dialogBinding.cardIv.setImageURI(image)
+    override fun setupDialogLast(images: List<Uri>, cards  : List<SingleCard>){
+        settingsViewModel.putItemsToDB(encodeBitMapToBase64(images), cards)
     }
 
     private fun encodeBitMapToBase64(images: List<Uri>): List<String> {

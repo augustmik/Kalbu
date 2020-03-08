@@ -76,6 +76,7 @@ dependencies {
     // live data with view model and dagger
     implementation "android.arch.lifecycle:extensions:1.1.1"
 
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha01"
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
