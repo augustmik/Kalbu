@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import lt.autismus.roomDb.dbObjects.CardDB
 import lt.autismus.roomDb.dbObjects.CardDao
 
-@Database(entities = [CardDB::class], version = 1)
+@Database(entities = [CardDB::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun cardsDao(): CardDao
 }

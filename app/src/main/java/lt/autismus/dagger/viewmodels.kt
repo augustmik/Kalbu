@@ -6,6 +6,8 @@ import dagger.Binds
 import dagger.MapKey
 import dagger.Module
 import dagger.multibindings.IntoMap
+import lt.autismus.frontScreen.CategoriesViewModel
+import lt.autismus.frontScreen.MainActivityViewModel
 import lt.autismus.settings.SettingsViewModel
 import javax.inject.Inject
 import javax.inject.Provider
@@ -34,6 +36,15 @@ abstract class CustomViewModelModule {
     @ViewModelKey(SettingsViewModel::class)
     abstract fun bindSettingsViewModel(customViewModel: SettingsViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainActivityViewModel::class)
+    abstract fun bindMainActViewModel(customViewModel: MainActivityViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CategoriesViewModel::class)
+    abstract fun bindCategoriesViewModel(customViewModel: CategoriesViewModel): ViewModel
 }
 
 @Module

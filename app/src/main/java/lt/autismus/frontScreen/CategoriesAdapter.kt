@@ -50,7 +50,7 @@ class CategoriesAdapter (
             Glide.with(context)
                 .asBitmap()
                 .load(Base64.decode(card.image, Base64.DEFAULT))
-//                .placeholder(R.drawable.ic_broken)
+                .placeholder(R.drawable.ic_no_photo)
                 .into(binding.cardImage)
         }
     }

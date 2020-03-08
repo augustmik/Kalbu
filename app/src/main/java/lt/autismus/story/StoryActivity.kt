@@ -22,6 +22,6 @@ class StoryActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        binding.card = SingleCard()
+//        binding.card = SingleCard()
     }
 }
