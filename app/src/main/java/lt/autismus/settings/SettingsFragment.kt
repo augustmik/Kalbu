@@ -56,7 +56,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun sendImagesToActivity(images: ClipData){
         val imagesL = mutableListOf<Uri>()
-        for (i in 0..images.itemCount){
+        for (i in 0 until images.itemCount){
             val uri = images.getItemAt(i).uri
             imagesL.add(uri)
         }

@@ -24,14 +24,15 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import javax.inject.Inject
 
-class SettingsActivity : DaggerAppCompatActivity() {
+class SettingsActivity : DaggerAppCompatActivity(), DialogListener {
 
     @Inject
     lateinit var factory: CustomViewModelFactory
 
-    private val createCardDialog: Dialog by lazy { Dialog(this) }
+//    private val createCardDialog: Dialog by lazy { Dialog(this) }
 
     private lateinit var dialogBinding: DialogAddNameToCardBinding
+    private lateinit var dialogHandler : DialogHandler
 
     private val settingsViewModel by lazy {
         ViewModelProvider(this, factory).get(SettingsViewModel::class.java)
@@ -49,13 +50,6 @@ class SettingsActivity : DaggerAppCompatActivity() {
             .beginTransaction()
             .replace(R.id.settings_container, SettingsFragment())
             .commit()
-
-        dialogBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(this),
-            R.layout.dialog_add_name_to_card,
-            null,
-            false
-        )
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -63,7 +57,7 @@ class SettingsActivity : DaggerAppCompatActivity() {
         return true
     }
 
-    fun sendImagesToDB(images: List<Uri>){
+    fun sendImagesToDB(images: List<Uri>) {
 //        val source = ImageDecoder.createSource(this.contentResolver, folderUri)
 //        val bitmap = ImageDecoder.decodeBitmap(source)
         setupCardsFromImages(images)
@@ -71,20 +65,42 @@ class SettingsActivity : DaggerAppCompatActivity() {
         settingsViewModel.putImagesToDB(encodeBitMapToBase64(images))
     }
 
-    private fun setupCardsFromImages(images : List<Uri>){
-        for (item in images){
-            val cardItem = SingleCard()
-            dialogBinding.card = cardItem
-            dialogBinding.cardIv.setImageURI(item)
-            createCardDialog.setContentView(dialogBinding.root)
-            createCardDialog.show()
-//            addPicDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    private fun setupCardsFromImages(images: List<Uri>) {
+        dialogHandler = DialogHandler(this)
+        dialogHandler.setupFirst(images)
+    }
+
+    override fun setupDialog(image: Uri, cardItem: SingleCard) {
+        val createCardDialog = Dialog(this)
+        dialogBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(this),
+            R.layout.dialog_add_name_to_card,
+            null,
+            false
+        )
+        dialogBinding.card = cardItem
+        dialogBinding.cardIv.setImageURI(image)
+        createCardDialog.setContentView(dialogBinding.root)
+//        createCardDialog.
+        createCardDialog.show()
+        dialogBinding.acceptButton.setOnClickListener {
+//            it.
+            createCardDialog.dismiss()
+            dialogHandler.loadNext()
         }
+        dialogBinding.cancelButton.setOnClickListener {
+            createCardDialog.dismiss()
+            dialogHandler.loadNext()
+        }
+    }
+    override fun setupDialogLast(image: Uri, cardItem: SingleCard) {
+        dialogBinding.card = cardItem
+        dialogBinding.cardIv.setImageURI(image)
     }
 
     private fun encodeBitMapToBase64(images: List<Uri>): List<String> {
         val imagesB64 = mutableListOf<String>()
-        for (image in images){
+        for (image in images) {
             val imageStream: InputStream? = contentResolver.openInputStream(image)
             val selectedImageBM: Bitmap = BitmapFactory.decodeStream(imageStream)
             val byteArrayOut = ByteArrayOutputStream()
