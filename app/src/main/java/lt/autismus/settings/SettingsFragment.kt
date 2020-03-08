@@ -40,10 +40,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
                 Log.i("selected resultData", data?.data.toString())
                 Log.i("selected resultClip", data?.clipData.toString())
-                if (data?.data == null) {
-                    sendImagesToActivity(data?.data!!)
+                if (data?.data != null) {
+                    sendImagesToActivity(data.data!!)
                 } else {
-                    sendImagesToActivity(data.clipData!!)
+                    sendImagesToActivity(data?.clipData!!)
                 }
             }
         }

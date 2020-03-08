@@ -4,4 +4,7 @@
     <string name="settings_about">Apie</string>
     <string name="story_now">Dabar</string>
     <string name="story_then">Po To</string>
+    <string name="create_card_hint">Korteles pavadinimas</string>
+    <string name="create_card_button_cancel">Atšaukti</string>
+    <string name="create_card_button_accept">Pateikti</string>
 </resources>
