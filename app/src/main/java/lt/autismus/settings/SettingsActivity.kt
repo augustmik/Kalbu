@@ -50,11 +50,7 @@ class SettingsActivity : DaggerAppCompatActivity(), DialogListener {
     }
 
     fun sendImagesToDB(images: List<Uri>) {
-//        val source = ImageDecoder.createSource(this.contentResolver, folderUri)
-//        val bitmap = ImageDecoder.decodeBitmap(source)
         setupCardsFromImages(images)
-//        encodeBitMapToBase64(images)
-//        settingsViewModel.putImagesToDB(encodeBitMapToBase64(images))
     }
 
     private fun setupCardsFromImages(images: List<Uri>) {

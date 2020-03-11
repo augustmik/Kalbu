@@ -50,7 +50,6 @@ class CategoriesAdapter (
     }
 
     fun renewList(items: List<SingleCard>) {
-//        myDataSet.clear()
         myDataSet = items
         notifyDataSetChanged()
     }
