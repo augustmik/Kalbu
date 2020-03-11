@@ -23,16 +23,17 @@
                 android:layout_height="194dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/single_card_image_desc" />
 
             <TextView
                 android:id="@+id/card_title"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{card.title}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="@{card.title}"
                 app:layout_constraintTop_toBottomOf="@id/card_image" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
