@@ -1,8 +1,6 @@
 package lt.autismus.frontScreen
 
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import dagger.android.support.DaggerFragment
 import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
-
 import lt.autismus.databinding.FragmentItemListBinding
 import lt.autismus.repository.CardsRepo
-import lt.autismus.singleUnits.SingleCard
 import javax.inject.Inject
 
 class CategoryFragment : DaggerFragment() {
@@ -30,7 +26,7 @@ class CategoryFragment : DaggerFragment() {
     lateinit var binding: FragmentItemListBinding
     private val numberOfColumns = 1
 
-    private val cateroriesViewModel by lazy {
+    private val categoriesViewModel by lazy {
         ViewModelProvider(this, factory).get(CategoriesViewModel::class.java)
     }
 
@@ -51,7 +47,7 @@ class CategoryFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         val mAdapter = CategoriesAdapter(listOf(), context!!)
 
-        cateroriesViewModel.cardsLive.observe(viewLifecycleOwner, Observer {
+        categoriesViewModel.cardsLive.observe(viewLifecycleOwner, Observer {
             mAdapter.renewList(it)
         })
 

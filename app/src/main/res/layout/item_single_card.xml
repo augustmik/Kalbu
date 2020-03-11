@@ -9,6 +9,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/single_card_hitbox"
         android:layout_width="344dp"
         android:layout_height="266dp">
 
@@ -22,8 +23,7 @@
                 android:layout_height="194dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:tint="@color/colorPrimary"/>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/card_title"
