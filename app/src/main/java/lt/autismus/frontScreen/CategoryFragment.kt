@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
@@ -52,7 +53,7 @@ class CategoryFragment : DaggerFragment() {
         })
 
         binding.itemRecycler.apply {
-            layoutManager = GridLayoutManager(requireContext(), numberOfColumns)
+            layoutManager = LinearLayoutManager(requireContext())//GridLayoutManager(requireContext(), numberOfColumns)
             adapter = mAdapter
         }
     }

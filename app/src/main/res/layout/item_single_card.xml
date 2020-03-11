@@ -7,13 +7,14 @@
             name="card"
             type="lt.autismus.singleUnits.SingleCard" />
     </data>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/single_card_hitbox"
+        android:layout_margin="5dp"
         android:layout_width="344dp"
         android:layout_height="266dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/single_card_style"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
