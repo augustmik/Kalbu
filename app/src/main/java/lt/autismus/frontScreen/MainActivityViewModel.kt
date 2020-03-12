@@ -15,4 +15,9 @@ class MainActivityViewModel @Inject constructor(
             repository.updateCards()
         }
     }
+    fun updateCategories(){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.updateCategories()
+        }
+    }
 }

@@ -3,6 +3,7 @@ package lt.autismus.roomDb
 import android.content.Context
 import androidx.room.Room
 import lt.autismus.roomDb.dbObjects.CardDB
+import lt.autismus.roomDb.dbObjects.CategoriesDB
 import javax.inject.Singleton
 
 @Singleton
@@ -21,5 +22,14 @@ class RoomDBService(context: Context) {
 
     suspend fun loadAllCards(): List<CardDB> {
         return db.cardsDao().getAll()
+    }
+
+    suspend fun loadAllCategories(): List<CategoriesDB> {
+        return db.cardsDao().getAllCategories()
+    }
+
+    suspend fun addCategory(category: CategoriesDB): List<CategoriesDB> {
+        db.cardsDao().insertCategory(category)
+        return db.cardsDao().getAllCategories()
     }
 }

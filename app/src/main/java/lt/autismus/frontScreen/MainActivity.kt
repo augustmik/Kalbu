@@ -34,7 +34,8 @@ class MainActivity : DaggerAppCompatActivity() {
             false
         )
         setContentView(binding.root)
-        mainActViewModel.updateCards()
+//        mainActViewModel.updateCards()
+        mainActViewModel.updateCategories()
 
         supportFragmentManager.beginTransaction().add(binding.mainFragmentContainer.id, CategoryFragment())
             .commit()
@@ -50,7 +51,9 @@ class MainActivity : DaggerAppCompatActivity() {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
+        binding.fabId.setOnClickListener {
+            //Opens Create A Category window
 
-//        binding.
+        }
     }
 }
