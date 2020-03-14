@@ -15,7 +15,7 @@ interface CardDao {
     fun getAllCategories(): List<CategoriesDB>
 
     @Insert //(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCategory(categories: CategoriesDB)
+    fun insertAllCategories(categories: List<CategoriesDB>)
 //    @Query("SELECT * FROM Players WHERE idTeam = (:teamId)")
 //    fun loadAllByTeamId(teamId: Int): List<PlayerDB>
 

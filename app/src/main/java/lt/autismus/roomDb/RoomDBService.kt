@@ -28,8 +28,8 @@ class RoomDBService(context: Context) {
         return db.cardsDao().getAllCategories()
     }
 
-    suspend fun addCategory(category: CategoriesDB): List<CategoriesDB> {
-        db.cardsDao().insertCategory(category)
+    suspend fun addAllCategories(categories: List<CategoriesDB>): List<CategoriesDB> {
+        db.cardsDao().insertAllCategories(categories)
         return db.cardsDao().getAllCategories()
     }
 }

@@ -1,4 +1,4 @@
-package lt.autismus.frontScreen
+package lt.autismus.frontScreen.categories
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -9,17 +9,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import lt.autismus.R
 import lt.autismus.databinding.ItemSingleCardBinding
+import lt.autismus.databinding.ItemSingleCategoryBinding
 import lt.autismus.singleUnits.SingleCard
+import lt.autismus.singleUnits.SingleCategory
 
 class CategoriesAdapter (
-    private var myDataSet: List<SingleCard>,
+    private var myDataSet: List<SingleCategory>,
     private val context: Context
 ) : RecyclerView.Adapter<CategoriesAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val myView = DataBindingUtil.inflate<ItemSingleCardBinding>(
+        val myView = DataBindingUtil.inflate<ItemSingleCategoryBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.item_single_card,
+            R.layout.item_single_category,
             parent,
             false
         )
@@ -38,10 +40,10 @@ class CategoriesAdapter (
 //            TODO: make cards clickable here, enlarge them
         }
     }
-    class MyViewHolder(val binding: ItemSingleCardBinding) :
+    class MyViewHolder(val binding: ItemSingleCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(card: SingleCard, context: Context) {
+        fun bind(card: SingleCategory, context: Context) {
             binding.card = card
             val decoded = Base64.decode(card.image, Base64.DEFAULT)
             val bm = BitmapFactory.decodeByteArray(decoded, 0, decoded.size)
@@ -49,7 +51,7 @@ class CategoriesAdapter (
         }
     }
 
-    fun renewList(items: List<SingleCard>) {
+    fun renewList(items: List<SingleCategory>) {
         myDataSet = items
         notifyDataSetChanged()
     }

@@ -8,7 +8,7 @@ import lt.autismus.singleUnits.SingleCategory
 @Entity(tableName = "Categories")
 data class CategoriesDB(
     @field:PrimaryKey
-    val categoryName: String?,
+    val categoryName: String,
 
     @field:ColumnInfo(name = "imageCategory")
     val imageCardB64: String?
@@ -19,6 +19,15 @@ fun SingleCategory.asCategoriesDB() : CategoriesDB{
         categoryName = this.name,
         imageCardB64 = this.image
     )
+}
+
+fun List<SingleCategory>.asListCategoriesDB() : List<CategoriesDB>{
+    return this.map{
+        CategoriesDB(
+        categoryName = it.name,
+        imageCardB64 = it.image
+    )
+    }
 }
 
 fun List<CategoriesDB>.asListSingleCategory() : List<SingleCategory>{

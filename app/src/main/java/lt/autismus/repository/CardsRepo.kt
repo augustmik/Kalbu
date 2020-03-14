@@ -25,8 +25,8 @@ class CardsRepo @Inject constructor(
     suspend fun updateCards(){
         _allCards.postValue(roomService.loadAllCards().asListCard())
     }
-    suspend fun addCategoryToDB(category: SingleCategory){
-        val categoryToAdd = roomService.addCategory(category.asCategoriesDB())
+    suspend fun addCategoryToDB(categories: List<SingleCategory>){
+        val categoryToAdd = roomService.addAllCategories(categories.asListCategoriesDB())
         _allCategories.postValue(categoryToAdd.asListSingleCategory())
     }
     suspend fun updateCategories(){

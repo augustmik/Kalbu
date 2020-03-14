@@ -6,7 +6,7 @@ import dagger.Binds
 import dagger.MapKey
 import dagger.Module
 import dagger.multibindings.IntoMap
-import lt.autismus.frontScreen.CategoriesViewModel
+import lt.autismus.frontScreen.categories.CategoriesViewModel
 import lt.autismus.frontScreen.MainActivityViewModel
 import lt.autismus.settings.SettingsViewModel
 import javax.inject.Inject

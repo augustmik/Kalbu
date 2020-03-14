@@ -6,7 +6,7 @@ import lt.autismus.roomDb.dbObjects.CardDB
 import lt.autismus.roomDb.dbObjects.CardDao
 import lt.autismus.roomDb.dbObjects.CategoriesDB
 
-@Database(entities = [CardDB::class, CategoriesDB::class], version = 3)
+@Database(entities = [CardDB::class, CategoriesDB::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun cardsDao(): CardDao
 }

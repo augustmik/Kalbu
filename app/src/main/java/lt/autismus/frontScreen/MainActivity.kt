@@ -1,29 +1,62 @@
 package lt.autismus.frontScreen
 
+import android.app.Dialog
+import android.content.ClipData
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.LayoutInflater
+import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerAppCompatActivity
+import lt.autismus.PICK_GALLERY_REQUEST_CODE
 import lt.autismus.R
+import lt.autismus.TAKE_PICTURE_REQUEST_CODE
 import lt.autismus.dagger.CustomViewModelFactory
 import lt.autismus.databinding.ActivityMainBinding
+import lt.autismus.databinding.DialogAddNameToCardBinding
+import lt.autismus.databinding.DialogAddNameToCategoryBinding
+import lt.autismus.databinding.DialogSelectSourceBinding
+import lt.autismus.frontScreen.cards.CardsFragment
+import lt.autismus.frontScreen.categories.CategoryFragment
+import lt.autismus.settings.DialogHandler
+import lt.autismus.settings.DialogListener
 import lt.autismus.settings.SettingsActivity
-import lt.autismus.settings.SettingsViewModel
+import lt.autismus.singleUnits.SingleCard
+import lt.autismus.singleUnits.SingleCategory
 import lt.autismus.story.StoryActivity
+import lt.autismus.util.PictureCoder
+import java.io.File
+import java.io.IOException
+import java.text.DateFormat
+import java.util.*
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+class MainActivity : DaggerAppCompatActivity(), DialogListener {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var dialogBinding: DialogSelectSourceBinding
+
+    private lateinit var dialogHandler: DialogHandler
+
+    private val selectSourceDialog: Dialog by lazy { Dialog(this) }
 
     @Inject
-    lateinit var factory : CustomViewModelFactory
+    lateinit var factory: CustomViewModelFactory
+
+    @Inject
+    lateinit var pictureCoder: PictureCoder
 
     private val mainActViewModel by lazy {
         ViewModelProvider(this, factory).get(MainActivityViewModel::class.java)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,9 +68,11 @@ class MainActivity : DaggerAppCompatActivity() {
         )
         setContentView(binding.root)
 //        mainActViewModel.updateCards()
-        mainActViewModel.updateCategories()
 
-        supportFragmentManager.beginTransaction().add(binding.mainFragmentContainer.id, CategoryFragment())
+        supportFragmentManager.beginTransaction()
+            .add(binding.mainFragmentContainer.id,
+                CategoryFragment()
+            )
             .commit()
 
 
@@ -51,9 +86,178 @@ class MainActivity : DaggerAppCompatActivity() {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
-        binding.fabId.setOnClickListener {
-            //Opens Create A Category window
+        setupDialog()
+    }
 
+    private fun setupDialog() {
+        dialogBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(this),
+            R.layout.dialog_select_source,
+            null,
+            false
+        )
+        dialogBinding.takePictureHitbox.setOnClickListener { takeAPicture() }
+        dialogBinding.loadFromGalleryHitbox.setOnClickListener { selectImagesGallery() }
+//        dialogBinding.backButton.setOnClickListener { closeDialog() }
+        selectSourceDialog.setContentView(dialogBinding.root)
+
+        binding.fabId.setOnClickListener {
+            //Opens Create A Card fragment
+            selectSourceDialog.show()
+//            val fm: FragmentManager = supportFragmentManager
+//            val fragment = fm.findFragmentById(binding.mainFragmentContainer.id)
+//            if (fragment is CategoryFragment){
+//                fragment.loadCreationDialog()
+//            }
+            //TODO: add the cards in category creation here
         }
+    }
+
+    private lateinit var takenPicUri: Uri
+    private fun takeAPicture() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(packageManager)?.also {
+                val photoFile: File? = try {
+                    createImageFile()
+                } catch (ex: IOException) {
+                    Toast.makeText(
+                        this,
+                        "Klaida saugant nuotrauka.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    null
+                }
+                // Continue if the File was created
+                photoFile?.also {
+                    takenPicUri = FileProvider.getUriForFile(
+                        this,
+                        "lt.autismus.fileprovider",
+                        it
+                    )
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, takenPicUri)
+                    startActivityForResult(takePictureIntent, TAKE_PICTURE_REQUEST_CODE)
+                }
+            }
+        }
+    }
+
+    private lateinit var currentPhotoPath: String
+
+    @Throws(IOException::class)
+    fun createImageFile(): File {
+        // Create image file name
+        val timeStamp: String = DateFormat.getTimeInstance().format(Date())
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "PNG_${timeStamp}_",
+            ".png",
+            storageDir
+        ).apply {
+            currentPhotoPath = absolutePath
+        }
+    }
+
+    private fun selectImagesGallery() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        startActivityForResult(intent, PICK_GALLERY_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == TAKE_PICTURE_REQUEST_CODE && resultCode == RESULT_OK) {
+            selectSourceDialog.dismiss()
+//            val encodedImage = pictureCoder.encodeBitMapToBase64(takenPicUri)
+//            userPictures.add(encodedImage)
+        }
+
+        if (requestCode == PICK_GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
+            selectSourceDialog.dismiss()
+            if (data?.data != null) {
+                convertToUri(data.data!!)
+            } else {
+                convertToUri(data?.clipData!!)
+            }
+//            val encodedImage = pictureCoder.encodeBitMapToBase64(imageURI!!)
+//            userPictures.add(encodedImage)
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun convertToUri(image: Uri) {
+        setupCardsFromImages(listOf(image))
+    }
+
+    private fun convertToUri(images: ClipData) {
+        val imagesL = mutableListOf<Uri>()
+        for (i in 0 until images.itemCount) {
+            val uri = images.getItemAt(i).uri
+            imagesL.add(uri)
+        }
+        setupCardsFromImages(imagesL)
+    }
+
+    private fun setupCardsFromImages(images: List<Uri>) {
+        val defName = getString(R.string.default_category_name)
+        val fm = supportFragmentManager
+            val fragment = fm.findFragmentById(binding.mainFragmentContainer.id)
+            if (fragment is CategoryFragment){
+                dialogHandler = DialogHandler(this, CardType.Category, defName)
+            }
+        if (fragment is CardsFragment){
+            dialogHandler = DialogHandler(this, CardType.Card, defName)
+        }
+        dialogHandler.setupFirst(images)
+    }
+
+    override fun setupDialog(image: Uri, cardItem: SingleCard) {
+        val createCardDialog = Dialog(this)
+        val createDialogBinding: DialogAddNameToCardBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(this),
+            R.layout.dialog_add_name_to_card,
+            null,
+            false
+        )
+        createDialogBinding.card = cardItem
+        createDialogBinding.cardIv.setImageURI(image)
+        createCardDialog.setContentView(createDialogBinding.root)
+        createCardDialog.show()
+        createDialogBinding.acceptButton.setOnClickListener {
+            createCardDialog.dismiss()
+            dialogHandler.loadNext()
+        }
+        createDialogBinding.cancelButton.setOnClickListener {
+            createCardDialog.dismiss()
+            dialogHandler.loadNext()
+        }
+    }
+
+    override fun setupDialogLast(images: List<Uri>, cards: List<SingleCard>) {
+        mainActViewModel.putItemsToDB(pictureCoder.encodeBitMapToBase64(images), cards)
+    }
+
+    override fun setupDialogCat(image: Uri, categoryItem: SingleCategory) {
+        val createCardDialog = Dialog(this)
+        val createDialogCatBinding: DialogAddNameToCategoryBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(this),
+            R.layout.dialog_add_name_to_category,
+            null,
+            false
+        )
+        createDialogCatBinding.card = categoryItem
+        createDialogCatBinding.cardIv.setImageURI(image)
+        createCardDialog.setContentView(createDialogCatBinding.root)
+        createCardDialog.show()
+        createDialogCatBinding.acceptButton.setOnClickListener {
+            createCardDialog.dismiss()
+            dialogHandler.loadNext()
+        }
+        createDialogCatBinding.cancelButton.setOnClickListener {
+            createCardDialog.dismiss()
+            dialogHandler.loadNext()
+        }    }
+
+    override fun setupDialogCatLast(images: List<Uri>, categories: List<SingleCategory>) {
+        mainActViewModel.putCategoriesToDB(pictureCoder.encodeBitMapToBase64(images), categories)
     }
 }

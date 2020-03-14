@@ -1,4 +1,4 @@
-package lt.autismus.frontScreen
+package lt.autismus.frontScreen.categories
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import lt.autismus.R
@@ -26,6 +25,7 @@ class CategoryFragment : DaggerFragment() {
 
     lateinit var binding: FragmentItemListBinding
     private val numberOfColumns = 1
+//    private lateinit var takenPicUri: Uri
 
     private val categoriesViewModel by lazy {
         ViewModelProvider(this, factory).get(CategoriesViewModel::class.java)
@@ -41,14 +41,18 @@ class CategoryFragment : DaggerFragment() {
             null,
             false
         )
+        categoriesViewModel.updateCategories()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mAdapter = CategoriesAdapter(listOf(), context!!)
+        val mAdapter = CategoriesAdapter(
+            listOf(),
+            context!!
+        )
 
-        categoriesViewModel.cardsLive.observe(viewLifecycleOwner, Observer {
+        categoriesViewModel.categoriesLive.observe(viewLifecycleOwner, Observer {
             mAdapter.renewList(it)
         })
 
