@@ -8,6 +8,9 @@ interface CardDao {
     @Query("SELECT * FROM Cards")
     fun getAll(): List<CardDB>
 
+    @Query("SELECT * FROM Cards WHERE cardCategory = (:category)")
+    fun getAllCategoryCards(category: String): List<CardDB>
+
     @Insert //(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(cards: List<CardDB>)
 

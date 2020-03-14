@@ -11,7 +11,8 @@ import lt.autismus.util.PictureCoder
 
 class CategoriesAdapter (
     private var myDataSet: List<SingleCategory>,
-    val pictureCoder: PictureCoder
+    val pictureCoder: PictureCoder,
+    val onCardClickListener: OnCardClickListener
 ) : RecyclerView.Adapter<CategoriesAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -34,6 +35,8 @@ class CategoriesAdapter (
 
         holder.binding.singleCardHitbox.setOnClickListener {
 //            TODO: make cards clickable here, enlarge them
+            onCardClickListener.clickedCategory(myDataSet[position].name)
+
         }
     }
     class MyViewHolder(val binding: ItemSingleCategoryBinding, val pictureCoder: PictureCoder) :

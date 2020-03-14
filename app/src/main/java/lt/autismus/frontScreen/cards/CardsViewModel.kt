@@ -16,9 +16,9 @@ class CardsViewModel @Inject constructor(
 
     val cardsLive : LiveData<List<SingleCard>> = repository.getCardsLive()
 
-    fun updateCards(){
+    fun updateCards(categoryName: String){
         viewModelScope.launch(Dispatchers.IO){
-            repository.updateCards()
+            repository.updateCards(categoryName)
         }
     }
 }

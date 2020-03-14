@@ -23,6 +23,7 @@ import lt.autismus.databinding.DialogAddNameToCategoryBinding
 import lt.autismus.databinding.DialogSelectSourceBinding
 import lt.autismus.frontScreen.cards.CardsFragment
 import lt.autismus.frontScreen.categories.CategoryFragment
+import lt.autismus.frontScreen.categories.OnCardClickListener
 import lt.autismus.settings.DialogHandler
 import lt.autismus.settings.DialogListener
 import lt.autismus.settings.SettingsActivity
@@ -253,5 +254,13 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListe
 
     override fun setupDialogCatLast(images: List<Uri>, categories: List<SingleCategory>) {
         mainActViewModel.putCategoriesToDB(pictureCoder.encodeBitMapToBase64(images), categories)
+    }
+
+    fun clickedCategory(categoryName: String) {
+        supportFragmentManager.beginTransaction()
+            .replace(
+                binding.mainFragmentContainer.id,
+                CardsFragment(categoryName)
+            ).commit()
     }
 }

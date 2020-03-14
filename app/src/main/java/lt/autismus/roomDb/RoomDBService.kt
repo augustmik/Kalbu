@@ -23,7 +23,9 @@ class RoomDBService(context: Context) {
     suspend fun loadAllCards(): List<CardDB> {
         return db.cardsDao().getAll()
     }
-
+    suspend fun loadSelectedCategoryCards(categoryName: String): List<CardDB> {
+        return db.cardsDao().getAllCategoryCards(categoryName)
+    }
     suspend fun loadAllCategories(): List<CategoriesDB> {
         return db.cardsDao().getAllCategories()
     }

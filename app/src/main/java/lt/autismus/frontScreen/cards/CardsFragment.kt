@@ -16,7 +16,9 @@ import lt.autismus.repository.CardsRepo
 import lt.autismus.util.PictureCoder
 import javax.inject.Inject
 
-class CardsFragment : DaggerFragment() {
+class CardsFragment constructor(
+    val clickedCategory: String
+) : DaggerFragment() {
 
     @Inject
     lateinit var factory: CustomViewModelFactory
@@ -41,7 +43,7 @@ class CardsFragment : DaggerFragment() {
             null,
             false
         )
-        cardsViewModel.updateCards()
+        cardsViewModel.updateCards(clickedCategory)
         return binding.root
     }
 

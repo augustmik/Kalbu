@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,11 +13,13 @@ import dagger.android.support.DaggerFragment
 import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
 import lt.autismus.databinding.FragmentItemListBinding
+import lt.autismus.frontScreen.MainActivity
 import lt.autismus.repository.CardsRepo
+import lt.autismus.singleUnits.SingleCategory
 import lt.autismus.util.PictureCoder
 import javax.inject.Inject
 
-class CategoryFragment : DaggerFragment() {
+class CategoryFragment : DaggerFragment(), OnCardClickListener {
 
     @Inject
     lateinit var cardsRepo: CardsRepo
@@ -53,7 +56,8 @@ class CategoryFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         val mAdapter = CategoriesAdapter(
             listOf(),
-            pictureCoder
+            pictureCoder,
+            this
         )
 
         categoriesViewModel.categoriesLive.observe(viewLifecycleOwner, Observer {
@@ -64,5 +68,9 @@ class CategoryFragment : DaggerFragment() {
             layoutManager = LinearLayoutManager(requireContext())//GridLayoutManager(requireContext(), numberOfColumns)
             adapter = mAdapter
         }
+    }
+
+    override fun clickedCategory(categoryName: String) {
+        (requireActivity() as MainActivity).clickedCategory(categoryName)
     }
 }
