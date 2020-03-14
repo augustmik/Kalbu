@@ -37,7 +37,7 @@ import java.util.*
 import javax.inject.Inject
 
 
-class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListener {
+class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var dialogBinding: DialogSelectSourceBinding
@@ -74,7 +74,7 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListe
                 CategoryFragment()
             )
             .commit()
-
+        selectedCategoryName = getString(R.string.default_category_name)
 
         binding.createCardButton.setOnClickListener {
             //launches create a Stories window
@@ -162,8 +162,8 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListe
             selectSourceDialog.dismiss()
             //TODO: handle pictures
 
-    //            val encodedImage = pictureCoder.encodeBitMapToBase64(takenPicUri)
-    //            userPictures.add(encodedImage)
+            //            val encodedImage = pictureCoder.encodeBitMapToBase64(takenPicUri)
+            //            userPictures.add(encodedImage)
         }
 
         if (requestCode == PICK_GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -203,6 +203,20 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListe
         dialogHandler.setupFirst(images)
     }
 
+    override fun onBackPressed() {
+        val defaultValue = getString(R.string.default_category_name)
+        if (selectedCategoryName != defaultValue) {
+            supportFragmentManager.beginTransaction()
+                .replace(
+                    binding.mainFragmentContainer.id,
+                    CategoryFragment()
+                ).commit()
+            selectedCategoryName = defaultValue
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     override fun setupDialog(image: Uri, cardItem: SingleCard) {
         val createCardDialog = Dialog(this)
         val createDialogBinding: DialogAddNameToCardBinding = DataBindingUtil.inflate(
@@ -226,7 +240,11 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListe
     }
 
     override fun setupDialogLast(images: List<Uri>, cards: List<SingleCard>) {
-        mainActViewModel.putCardsToDB(pictureCoder.encodeBitMapToBase64(images), cards, selectedCategoryName)
+        mainActViewModel.putCardsToDB(
+            pictureCoder.encodeBitMapToBase64(images),
+            cards,
+            selectedCategoryName
+        )
     }
 
     override fun setupDialogCat(image: Uri, categoryItem: SingleCategory) {
