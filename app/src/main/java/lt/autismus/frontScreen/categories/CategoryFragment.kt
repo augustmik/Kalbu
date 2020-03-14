@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +14,6 @@ import lt.autismus.dagger.CustomViewModelFactory
 import lt.autismus.databinding.FragmentItemListBinding
 import lt.autismus.frontScreen.MainActivity
 import lt.autismus.repository.CardsRepo
-import lt.autismus.singleUnits.SingleCategory
 import lt.autismus.util.PictureCoder
 import javax.inject.Inject
 
@@ -32,7 +30,6 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
 
     lateinit var binding: FragmentItemListBinding
     private val numberOfColumns = 1
-//    private lateinit var takenPicUri: Uri
 
     private val categoriesViewModel by lazy {
         ViewModelProvider(this, factory).get(CategoriesViewModel::class.java)

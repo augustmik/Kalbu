@@ -7,7 +7,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import lt.autismus.repository.CardsRepo
 import lt.autismus.singleUnits.SingleCard
-import lt.autismus.singleUnits.SingleCategory
 import javax.inject.Inject
 
 class CardsViewModel @Inject constructor(

@@ -5,7 +5,6 @@ import dagger.Module
 import dagger.Provides
 import lt.autismus.frontScreen.MainActivity
 import lt.autismus.util.PictureCoder
-import javax.inject.Singleton
 
 @Module
 class CardMakerModule {

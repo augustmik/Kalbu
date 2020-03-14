@@ -11,8 +11,8 @@ import lt.autismus.util.PictureCoder
 
 class CategoriesAdapter (
     private var myDataSet: List<SingleCategory>,
-    val pictureCoder: PictureCoder,
-    val onCardClickListener: OnCardClickListener
+    private val pictureCoder: PictureCoder,
+    private val onCardClickListener: OnCardClickListener
 ) : RecyclerView.Adapter<CategoriesAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

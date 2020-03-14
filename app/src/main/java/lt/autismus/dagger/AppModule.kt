@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
 import lt.autismus.roomDb.RoomDBService
-import lt.autismus.util.PictureCoder
 import javax.inject.Singleton
 
 

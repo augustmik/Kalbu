@@ -160,10 +160,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == TAKE_PICTURE_REQUEST_CODE && resultCode == RESULT_OK) {
             selectSourceDialog.dismiss()
-            //TODO: handle pictures
-
-            //            val encodedImage = pictureCoder.encodeBitMapToBase64(takenPicUri)
-            //            userPictures.add(encodedImage)
+            setupCardsFromImages(listOf(takenPicUri))
         }
 
         if (requestCode == PICK_GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -235,7 +232,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         }
         createDialogBinding.cancelButton.setOnClickListener {
             createCardDialog.dismiss()
-            dialogHandler.loadNext()
+//            dialogHandler.loadNext()
         }
     }
 

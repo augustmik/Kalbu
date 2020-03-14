@@ -12,7 +12,6 @@ import dagger.android.support.DaggerFragment
 import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
 import lt.autismus.databinding.FragmentItemListBinding
-import lt.autismus.repository.CardsRepo
 import lt.autismus.util.PictureCoder
 import javax.inject.Inject
 
