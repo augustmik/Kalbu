@@ -67,7 +67,6 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListe
             false
         )
         setContentView(binding.root)
-//        mainActViewModel.updateCards()
 
         supportFragmentManager.beginTransaction()
             .add(

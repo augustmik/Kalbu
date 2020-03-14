@@ -11,7 +11,7 @@ import lt.autismus.singleUnits.SingleCategory
 import javax.inject.Inject
 
 class CardsViewModel @Inject constructor(
-    val repository : CardsRepo
+    private val repository : CardsRepo
 ): ViewModel() {
 
     val cardsLive : LiveData<List<SingleCard>> = repository.getCardsLive()
@@ -20,5 +20,8 @@ class CardsViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO){
             repository.updateCards(categoryName)
         }
+    }
+    fun resetCardsLive(){
+        repository.resetCardsLive()
     }
 }

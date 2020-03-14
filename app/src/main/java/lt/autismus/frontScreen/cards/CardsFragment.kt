@@ -17,7 +17,7 @@ import lt.autismus.util.PictureCoder
 import javax.inject.Inject
 
 class CardsFragment constructor(
-    val clickedCategory: String
+    private val clickedCategory: String
 ) : DaggerFragment() {
 
     @Inject
@@ -33,6 +33,10 @@ class CardsFragment constructor(
         ViewModelProvider(this, factory).get(CardsViewModel::class.java)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        cardsViewModel.resetCardsLive()
+        super.onCreate(savedInstanceState)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
