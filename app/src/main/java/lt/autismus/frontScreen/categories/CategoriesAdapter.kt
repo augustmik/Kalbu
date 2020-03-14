@@ -1,21 +1,17 @@
 package lt.autismus.frontScreen.categories
 
-import android.content.Context
-import android.graphics.BitmapFactory
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import lt.autismus.R
-import lt.autismus.databinding.ItemSingleCardBinding
 import lt.autismus.databinding.ItemSingleCategoryBinding
-import lt.autismus.singleUnits.SingleCard
 import lt.autismus.singleUnits.SingleCategory
+import lt.autismus.util.PictureCoder
 
 class CategoriesAdapter (
     private var myDataSet: List<SingleCategory>,
-    private val context: Context
+    val pictureCoder: PictureCoder
 ) : RecyclerView.Adapter<CategoriesAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -26,7 +22,7 @@ class CategoriesAdapter (
             false
         )
         return MyViewHolder(
-            myView
+            myView, pictureCoder
         )
     }
 
@@ -34,20 +30,18 @@ class CategoriesAdapter (
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        holder.bind(myDataSet[position], context)
+        holder.bind(myDataSet[position])
 
         holder.binding.singleCardHitbox.setOnClickListener {
 //            TODO: make cards clickable here, enlarge them
         }
     }
-    class MyViewHolder(val binding: ItemSingleCategoryBinding) :
+    class MyViewHolder(val binding: ItemSingleCategoryBinding, val pictureCoder: PictureCoder) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(card: SingleCategory, context: Context) {
+        fun bind(card: SingleCategory) {
             binding.card = card
-            val decoded = Base64.decode(card.image, Base64.DEFAULT)
-            val bm = BitmapFactory.decodeByteArray(decoded, 0, decoded.size)
-            binding.cardImage.setImageBitmap(bm)
+            binding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
         }
     }
 

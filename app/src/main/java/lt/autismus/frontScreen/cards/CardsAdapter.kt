@@ -1,8 +1,5 @@
 package lt.autismus.frontScreen.cards
 
-import android.content.Context
-import android.graphics.BitmapFactory
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import lt.autismus.R
 import lt.autismus.databinding.ItemSingleCardBinding
 import lt.autismus.singleUnits.SingleCard
+import lt.autismus.util.PictureCoder
 
 class CardsAdapter (
     private var myDataSet: List<SingleCard>,
-    private val context: Context
+    val pictureCoder: PictureCoder
 ) : RecyclerView.Adapter<CardsAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -24,7 +22,7 @@ class CardsAdapter (
             false
         )
         return MyViewHolder(
-            myView
+            myView, pictureCoder
         )
     }
 
@@ -32,20 +30,18 @@ class CardsAdapter (
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        holder.bind(myDataSet[position], context)
+        holder.bind(myDataSet[position])
 
         holder.binding.singleCardHitbox.setOnClickListener {
 //            TODO: make cards clickable here, enlarge them
         }
     }
-    class MyViewHolder(val binding: ItemSingleCardBinding) :
+    class MyViewHolder(val binding: ItemSingleCardBinding, val pictureCoder: PictureCoder) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(card: SingleCard, context: Context) {
+        fun bind(card: SingleCard) {
             binding.card = card
-            val decoded = Base64.decode(card.image, Base64.DEFAULT)
-            val bm = BitmapFactory.decodeByteArray(decoded, 0, decoded.size)
-            binding.cardImage.setImageBitmap(bm)
+            binding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
         }
     }
 

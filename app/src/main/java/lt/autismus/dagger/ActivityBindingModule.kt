@@ -8,7 +8,7 @@ import lt.autismus.settings.SettingsActivity
 
 @Module
 abstract class ActivityBindingModule {
-    @ContributesAndroidInjector(modules = [CardMakerModule::class])
+    @ContributesAndroidInjector(modules = [FragmentModule::class, CardMakerModule::class])
     abstract fun contributeMainActivity(): MainActivity
 
     @ContributesAndroidInjector

@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerAppCompatActivity
 import lt.autismus.PICK_GALLERY_REQUEST_CODE
@@ -38,7 +37,7 @@ import java.util.*
 import javax.inject.Inject
 
 
-class MainActivity : DaggerAppCompatActivity(), DialogListener {
+class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var dialogBinding: DialogSelectSourceBinding
@@ -70,14 +69,15 @@ class MainActivity : DaggerAppCompatActivity(), DialogListener {
 //        mainActViewModel.updateCards()
 
         supportFragmentManager.beginTransaction()
-            .add(binding.mainFragmentContainer.id,
+            .add(
+                binding.mainFragmentContainer.id,
                 CategoryFragment()
             )
             .commit()
 
 
         binding.createCardButton.setOnClickListener {
-            //launches create a card window
+            //launches create a Stories window
             val intent = Intent(this, StoryActivity::class.java)
             startActivity(intent)
         }
@@ -98,18 +98,11 @@ class MainActivity : DaggerAppCompatActivity(), DialogListener {
         )
         dialogBinding.takePictureHitbox.setOnClickListener { takeAPicture() }
         dialogBinding.loadFromGalleryHitbox.setOnClickListener { selectImagesGallery() }
-//        dialogBinding.backButton.setOnClickListener { closeDialog() }
+        dialogBinding.backButton.setOnClickListener { selectSourceDialog.dismiss() }
         selectSourceDialog.setContentView(dialogBinding.root)
 
         binding.fabId.setOnClickListener {
-            //Opens Create A Card fragment
             selectSourceDialog.show()
-//            val fm: FragmentManager = supportFragmentManager
-//            val fragment = fm.findFragmentById(binding.mainFragmentContainer.id)
-//            if (fragment is CategoryFragment){
-//                fragment.loadCreationDialog()
-//            }
-            //TODO: add the cards in category creation here
         }
     }
 
@@ -167,8 +160,10 @@ class MainActivity : DaggerAppCompatActivity(), DialogListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == TAKE_PICTURE_REQUEST_CODE && resultCode == RESULT_OK) {
             selectSourceDialog.dismiss()
-//            val encodedImage = pictureCoder.encodeBitMapToBase64(takenPicUri)
-//            userPictures.add(encodedImage)
+            //TODO: handle pictures
+
+    //            val encodedImage = pictureCoder.encodeBitMapToBase64(takenPicUri)
+    //            userPictures.add(encodedImage)
         }
 
         if (requestCode == PICK_GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -178,8 +173,6 @@ class MainActivity : DaggerAppCompatActivity(), DialogListener {
             } else {
                 convertToUri(data?.clipData!!)
             }
-//            val encodedImage = pictureCoder.encodeBitMapToBase64(imageURI!!)
-//            userPictures.add(encodedImage)
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -200,11 +193,11 @@ class MainActivity : DaggerAppCompatActivity(), DialogListener {
     private fun setupCardsFromImages(images: List<Uri>) {
         val defName = getString(R.string.default_category_name)
         val fm = supportFragmentManager
-            val fragment = fm.findFragmentById(binding.mainFragmentContainer.id)
-            if (fragment is CategoryFragment){
-                dialogHandler = DialogHandler(this, CardType.Category, defName)
-            }
-        if (fragment is CardsFragment){
+        val fragment = fm.findFragmentById(binding.mainFragmentContainer.id)
+        if (fragment is CategoryFragment) {
+            dialogHandler = DialogHandler(this, CardType.Category, defName)
+        }
+        if (fragment is CardsFragment) {
             dialogHandler = DialogHandler(this, CardType.Card, defName)
         }
         dialogHandler.setupFirst(images)
@@ -255,7 +248,8 @@ class MainActivity : DaggerAppCompatActivity(), DialogListener {
         createDialogCatBinding.cancelButton.setOnClickListener {
             createCardDialog.dismiss()
             dialogHandler.loadNext()
-        }    }
+        }
+    }
 
     override fun setupDialogCatLast(images: List<Uri>, categories: List<SingleCategory>) {
         mainActViewModel.putCategoriesToDB(pictureCoder.encodeBitMapToBase64(images), categories)

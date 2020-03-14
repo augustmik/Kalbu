@@ -13,12 +13,16 @@ import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
 import lt.autismus.databinding.FragmentItemListBinding
 import lt.autismus.repository.CardsRepo
+import lt.autismus.util.PictureCoder
 import javax.inject.Inject
 
 class CardsFragment : DaggerFragment() {
 
     @Inject
     lateinit var factory: CustomViewModelFactory
+
+    @Inject
+    lateinit var pictureCoder: PictureCoder
 
     lateinit var binding: FragmentItemListBinding
     private val numberOfColumns = 1
@@ -45,7 +49,7 @@ class CardsFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         val mAdapter = CardsAdapter(
             listOf(),
-            context!!
+            pictureCoder
         )
 
         cardsViewModel.cardsLive.observe(viewLifecycleOwner, Observer {

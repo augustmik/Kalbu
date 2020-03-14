@@ -11,6 +11,8 @@ import java.io.InputStream
 class PictureCoder (
     private val context: Context
 ) {
+    private val encodingType = Base64.DEFAULT
+
     fun encodeBitMapToBase64(images: List<Uri>): List<String> {
         val imagesB64 = mutableListOf<String>()
         for (image in images) {
@@ -20,8 +22,13 @@ class PictureCoder (
             selectedImageBM.setHasAlpha(true)
             selectedImageBM.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOut)
             val byteA = byteArrayOut.toByteArray()
-            imagesB64.add(Base64.encodeToString(byteA, Base64.DEFAULT))
+            imagesB64.add(Base64.encodeToString(byteA, encodingType))
         }
         return imagesB64
+    }
+
+    fun decodeB64ToBitmap(image: String?) : Bitmap{
+        val decoded = Base64.decode(image, encodingType)
+        return BitmapFactory.decodeByteArray(decoded, 0, decoded.size)
     }
 }
