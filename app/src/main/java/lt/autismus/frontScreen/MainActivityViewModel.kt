@@ -12,24 +12,16 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(
     private val repository : CardsRepo
 ) : ViewModel() {
-    fun updateCards(){
-        viewModelScope.launch(Dispatchers.IO){
-            repository.updateCards()
-        }
-    }
-//    fun updateCategories(){
-//        viewModelScope.launch(Dispatchers.IO){
-//            repository.updateCategories()
-//        }
-//    }
-    fun putItemsToDB(images: List<String>, cards  : List<SingleCard>){
+    fun putCardsToDB(images: List<String>, cards  : List<SingleCard>, selectedCategory: String){
         viewModelScope.launch(Dispatchers.IO) {
             for (index in cards.indices){
                 cards[index].image = images[index]
+                cards[index].category = selectedCategory
             }
             repository.addAllToDB(cards)
         }
     }
+
     fun putCategoriesToDB(images: List<String>, cards  : List<SingleCategory>){
         viewModelScope.launch(Dispatchers.IO) {
             for (index in cards.indices){

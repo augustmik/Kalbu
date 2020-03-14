@@ -23,7 +23,6 @@ import lt.autismus.databinding.DialogAddNameToCategoryBinding
 import lt.autismus.databinding.DialogSelectSourceBinding
 import lt.autismus.frontScreen.cards.CardsFragment
 import lt.autismus.frontScreen.categories.CategoryFragment
-import lt.autismus.frontScreen.categories.OnCardClickListener
 import lt.autismus.settings.DialogHandler
 import lt.autismus.settings.DialogListener
 import lt.autismus.settings.SettingsActivity
@@ -53,6 +52,7 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListe
     @Inject
     lateinit var pictureCoder: PictureCoder
 
+    lateinit var selectedCategoryName: String
     private val mainActViewModel by lazy {
         ViewModelProvider(this, factory).get(MainActivityViewModel::class.java)
     }
@@ -227,7 +227,7 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListe
     }
 
     override fun setupDialogLast(images: List<Uri>, cards: List<SingleCard>) {
-        mainActViewModel.putItemsToDB(pictureCoder.encodeBitMapToBase64(images), cards)
+        mainActViewModel.putCardsToDB(pictureCoder.encodeBitMapToBase64(images), cards, selectedCategoryName)
     }
 
     override fun setupDialogCat(image: Uri, categoryItem: SingleCategory) {
@@ -257,6 +257,7 @@ class MainActivity @Inject constructor(): DaggerAppCompatActivity(), DialogListe
     }
 
     fun clickedCategory(categoryName: String) {
+        selectedCategoryName = categoryName
         supportFragmentManager.beginTransaction()
             .replace(
                 binding.mainFragmentContainer.id,
