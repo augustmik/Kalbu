@@ -1,6 +1,8 @@
 package lt.autismus.frontScreen.categories
 
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +14,8 @@ import lt.autismus.util.PictureCoder
 class CategoriesAdapter (
     private var myDataSet: List<SingleCategory>,
     private val pictureCoder: PictureCoder,
-    private val onCardClickListener: OnCardClickListener
+    private val onCardClickListener: OnCardClickListener,
+    private val parentalMode: Boolean
 ) : RecyclerView.Adapter<CategoriesAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -34,12 +37,19 @@ class CategoriesAdapter (
         holder.bind(myDataSet[position])
 
         holder.binding.singleCardHitbox.setOnClickListener {
-//            TODO: make cards clickable here, enlarge them
             onCardClickListener.clickedCategory(myDataSet[position].name)
+        }
 
+        if (parentalMode) {
+            holder.binding.singleCardHitbox.setOnLongClickListener {
+                //TODO: make haptic feedback work
+                it.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+                holder.binding.cardClose.visibility = View.VISIBLE
+                true
+            }
         }
     }
-    class MyViewHolder(val binding: ItemSingleCategoryBinding, val pictureCoder: PictureCoder) :
+    class MyViewHolder(val binding: ItemSingleCategoryBinding, private val pictureCoder: PictureCoder) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(card: SingleCategory) {

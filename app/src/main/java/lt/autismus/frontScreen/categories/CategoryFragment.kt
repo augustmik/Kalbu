@@ -1,5 +1,6 @@
 package lt.autismus.frontScreen.categories
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,9 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
     @Inject
     lateinit var factory: CustomViewModelFactory
 
+    @Inject
+    lateinit var sharedPrefs: SharedPreferences
+
     lateinit var binding: FragmentItemListBinding
     private val numberOfColumns = 1
 
@@ -54,7 +58,8 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
         val mAdapter = CategoriesAdapter(
             listOf(),
             pictureCoder,
-            this
+            this,
+            sharedPrefs.getBoolean(getString(R.string.parental_mode_name), false)
         )
 
         categoriesViewModel.categoriesLive.observe(viewLifecycleOwner, Observer {

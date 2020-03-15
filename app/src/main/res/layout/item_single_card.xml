@@ -3,29 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="card"
             type="lt.autismus.singleUnits.SingleCard" />
     </data>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/single_card_hitbox"
-        android:layout_margin="5dp"
+        android:hapticFeedbackEnabled="true"
         android:layout_width="344dp"
-        android:layout_height="266dp">
+        android:layout_height="266dp"
+        android:layout_margin="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@drawable/single_card_style"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/single_card_style">
+
+            <ImageView
+                android:id="@+id/card_close"
+                android:layout_width="@dimen/dialog_close_button_size"
+                android:layout_height="@dimen/dialog_close_button_size"
+                android:src="@drawable/ic_close_black_24dp"
+                android:tint="@color/colorPrimary"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/card_image"
                 android:layout_width="0dp"
                 android:layout_height="194dp"
+                android:contentDescription="@string/single_card_image_desc"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/single_card_image_desc" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/card_title"

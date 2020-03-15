@@ -1,5 +1,6 @@
 package lt.autismus.frontScreen.cards
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,9 @@ class CardsFragment constructor(
 
     @Inject
     lateinit var pictureCoder: PictureCoder
+
+    @Inject
+    lateinit var sharedPrefs: SharedPreferences
 
     lateinit var binding: FragmentItemListBinding
     private val numberOfColumns = 1
@@ -57,7 +61,8 @@ class CardsFragment constructor(
         val mAdapter = CardsAdapter(
             listOf(),
             pictureCoder,
-            this
+            this,
+            sharedPrefs.getBoolean(getString(R.string.parental_mode_name), false)
         )
 
         cardsViewModel.cardsLive.observe(viewLifecycleOwner, Observer {
