@@ -11,7 +11,8 @@ import lt.autismus.util.PictureCoder
 
 class CardsAdapter (
     private var myDataSet: List<SingleCard>,
-    private val pictureCoder: PictureCoder
+    private val pictureCoder: PictureCoder,
+    private val onSingleCardClickListener: OnSingleCardClickedListener
 ) : RecyclerView.Adapter<CardsAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -33,10 +34,11 @@ class CardsAdapter (
         holder.bind(myDataSet[position])
 
         holder.binding.singleCardHitbox.setOnClickListener {
-//            TODO: make cards clickable here, enlarge them
+//            TODO: make cards clickable here, enlarge them, pass the card back to activity to get to fragment manager
+            onSingleCardClickListener.onCardClickedListener(myDataSet[position])
         }
     }
-    class MyViewHolder(val binding: ItemSingleCardBinding, val pictureCoder: PictureCoder) :
+    class MyViewHolder(val binding: ItemSingleCardBinding, private val pictureCoder: PictureCoder) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(card: SingleCard) {

@@ -17,10 +17,7 @@ import lt.autismus.PICK_GALLERY_REQUEST_CODE
 import lt.autismus.R
 import lt.autismus.TAKE_PICTURE_REQUEST_CODE
 import lt.autismus.dagger.CustomViewModelFactory
-import lt.autismus.databinding.ActivityMainBinding
-import lt.autismus.databinding.DialogAddNameToCardBinding
-import lt.autismus.databinding.DialogAddNameToCategoryBinding
-import lt.autismus.databinding.DialogSelectSourceBinding
+import lt.autismus.databinding.*
 import lt.autismus.frontScreen.cards.CardsFragment
 import lt.autismus.frontScreen.categories.CategoryFragment
 import lt.autismus.settings.DialogHandler
@@ -232,6 +229,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         }
         createDialogBinding.cancelButton.setOnClickListener {
             createCardDialog.dismiss()
+            //TODO: add func to just cancel that single one card, not all of them
 //            dialogHandler.loadNext()
         }
     }
@@ -277,5 +275,19 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
                 binding.mainFragmentContainer.id,
                 CardsFragment(categoryName)
             ).commit()
+    }
+
+    fun displaySingleCard(cardItem: SingleCard) {
+        val createEnlargerDialog = Dialog(this)
+        val createEnlargerDialogBinding: FragmentSelectedCardBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(this),
+            R.layout.fragment_selected_card,
+            null,
+            false
+        )
+        createEnlargerDialogBinding.card = cardItem
+        createEnlargerDialogBinding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(cardItem.image))
+        createEnlargerDialog.setContentView(createEnlargerDialogBinding.root)
+        createEnlargerDialog.show()
     }
 }

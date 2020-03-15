@@ -12,12 +12,14 @@ import dagger.android.support.DaggerFragment
 import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
 import lt.autismus.databinding.FragmentItemListBinding
+import lt.autismus.frontScreen.MainActivity
+import lt.autismus.singleUnits.SingleCard
 import lt.autismus.util.PictureCoder
 import javax.inject.Inject
 
 class CardsFragment constructor(
     private val clickedCategory: String
-) : DaggerFragment() {
+) : DaggerFragment(), OnSingleCardClickedListener {
 
     @Inject
     lateinit var factory: CustomViewModelFactory
@@ -54,7 +56,8 @@ class CardsFragment constructor(
         super.onViewCreated(view, savedInstanceState)
         val mAdapter = CardsAdapter(
             listOf(),
-            pictureCoder
+            pictureCoder,
+            this
         )
 
         cardsViewModel.cardsLive.observe(viewLifecycleOwner, Observer {
@@ -65,5 +68,9 @@ class CardsFragment constructor(
             layoutManager = LinearLayoutManager(requireContext())//GridLayoutManager(requireContext(), numberOfColumns)
             adapter = mAdapter
         }
+    }
+
+    override fun onCardClickedListener(card: SingleCard) {
+        (requireActivity() as MainActivity).displaySingleCard(card)
     }
 }
