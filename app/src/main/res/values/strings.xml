@@ -8,5 +8,5 @@
     <string name="create_card_button_cancel">Atšaukti</string>
     <string name="create_card_button_accept">Pateikti</string>
     <string name="single_card_image_desc">Kortelės nuotrauka</string>
-    <string name="default_category_name">Nenustatyta</string>
+    <string name="default_category_name" />
 </resources>

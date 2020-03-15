@@ -255,12 +255,16 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         createCardDialog.setContentView(createDialogCatBinding.root)
         createCardDialog.show()
         createDialogCatBinding.acceptButton.setOnClickListener {
-            createCardDialog.dismiss()
-            dialogHandler.loadNext()
+            if (categoryItem.name == getString(R.string.default_category_name)) {
+                Toast.makeText(this, "Klaida! Pavadinimas tuscias!", Toast.LENGTH_LONG).show()
+            } else {
+                createCardDialog.dismiss()
+                dialogHandler.loadNext()
+            }
         }
         createDialogCatBinding.cancelButton.setOnClickListener {
             createCardDialog.dismiss()
-            dialogHandler.loadNext()
+//            dialogHandler.loadNext()
         }
     }
 
