@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Autismus</string>
-    <string name="settings_parental_mode">Tėvo rėžimas</string>
+    <string name="settings_parental_mode">Tėvų rėžimas</string>
     <string name="settings_about">Apie</string>
     <string name="story_now">Dabar</string>
     <string name="story_then">Po To</string>
@@ -9,4 +9,5 @@
     <string name="create_card_button_accept">Pateikti</string>
     <string name="single_card_image_desc">Kortelės nuotrauka</string>
     <string name="default_category_name" />
+    <string name="parental_mode_name">parental_mode</string>
 </resources>

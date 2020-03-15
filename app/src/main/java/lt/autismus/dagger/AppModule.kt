@@ -2,6 +2,7 @@ package lt.autismus.dagger
 
 import android.app.Application
 import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import lt.autismus.roomDb.RoomDBService
@@ -17,8 +18,7 @@ class AppModule(private val app: Application) {
 
     @Provides
     @Singleton
-    fun provideSharedPrefsEditor(app: Application): SharedPreferences =
-        app.getSharedPreferences("sharedPrefs", 0)
+    fun provideSharedPrefsEditor(app: Application): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(app)
 
     @Provides
     @Singleton

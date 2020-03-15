@@ -3,11 +3,13 @@ package lt.autismus.frontScreen
 import android.app.Dialog
 import android.content.ClipData
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
@@ -40,6 +42,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
     private lateinit var dialogBinding: DialogSelectSourceBinding
 
     private lateinit var dialogHandler: DialogHandler
+    private lateinit var nameOfShared: String
 
     private val selectSourceDialog: Dialog by lazy { Dialog(this) }
 
@@ -49,6 +52,9 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
     @Inject
     lateinit var pictureCoder: PictureCoder
 
+    @Inject
+    lateinit var sharedPrefs: SharedPreferences
+
     lateinit var selectedCategoryName: String
     private val mainActViewModel by lazy {
         ViewModelProvider(this, factory).get(MainActivityViewModel::class.java)
@@ -56,7 +62,6 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = DataBindingUtil.inflate(
             LayoutInflater.from(this),
             R.layout.activity_main,
@@ -64,13 +69,15 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
             false
         )
         setContentView(binding.root)
-
         supportFragmentManager.beginTransaction()
             .add(
                 binding.mainFragmentContainer.id,
                 CategoryFragment()
             )
             .commit()
+
+        nameOfShared = getString(R.string.parental_mode_name)
+        resetParentalMode()
         selectedCategoryName = getString(R.string.default_category_name)
 
         binding.createCardButton.setOnClickListener {
@@ -86,6 +93,22 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         setupDialog()
     }
 
+    private fun resetParentalMode(){
+        val editor = sharedPrefs.edit()
+        editor.putBoolean(nameOfShared, false).apply()
+    }
+
+    override fun onResume() {
+        if (sharedPrefs.getBoolean(nameOfShared, false)){
+            binding.createCardButton.visibility = View.VISIBLE
+            binding.fabId.visibility = View.VISIBLE
+        }
+        else {
+            binding.createCardButton.visibility = View.GONE
+            binding.fabId.visibility = View.GONE
+        }
+        super.onResume()
+    }
     private fun setupDialog() {
         dialogBinding = DataBindingUtil.inflate(
             LayoutInflater.from(this),
