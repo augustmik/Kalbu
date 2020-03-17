@@ -1,5 +1,6 @@
 package lt.autismus.frontScreen.categories
 
+import android.app.Dialog
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
+import lt.autismus.databinding.DialogDeleteCardBinding
+import lt.autismus.databinding.DialogDeleteCategoryBinding
 import lt.autismus.databinding.FragmentItemListBinding
 import lt.autismus.frontScreen.MainActivity
 import lt.autismus.repository.CardsRepo
+import lt.autismus.singleUnits.SingleCategory
 import lt.autismus.util.PictureCoder
 import javax.inject.Inject
 
@@ -32,7 +36,11 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
     @Inject
     lateinit var sharedPrefs: SharedPreferences
 
+    private val deleteCardDialog: Dialog by lazy { Dialog(requireContext()) }
+
     lateinit var binding: FragmentItemListBinding
+    private lateinit var dialogDeleteBinding: DialogDeleteCategoryBinding
+
     private val numberOfColumns = 1
 
     private val categoriesViewModel by lazy {
@@ -67,12 +75,34 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
         })
 
         binding.itemRecycler.apply {
-            layoutManager = LinearLayoutManager(requireContext())//GridLayoutManager(requireContext(), numberOfColumns)
+            layoutManager =
+                LinearLayoutManager(requireContext())//GridLayoutManager(requireContext(), numberOfColumns)
             adapter = mAdapter
         }
     }
 
     override fun clickedCategory(categoryName: String) {
         (requireActivity() as MainActivity).clickedCategory(categoryName)
+    }
+
+    override fun deleteCardPressed(card: SingleCategory) {
+        dialogDeleteBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(requireContext()),
+            R.layout.dialog_delete_category,
+            null,
+            false
+        )
+
+        dialogDeleteBinding.acceptButton.setOnClickListener {
+            categoriesViewModel.deleteCategory(card.name)
+            deleteCardDialog.dismiss()
+        }
+        dialogDeleteBinding.cancelButton.setOnClickListener {
+            deleteCardDialog.dismiss()
+        }
+        dialogDeleteBinding.cardView.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+        dialogDeleteBinding.cardView.card = card
+        deleteCardDialog.setContentView(dialogDeleteBinding.root)
+        deleteCardDialog.show()
     }
 }

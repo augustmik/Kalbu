@@ -41,6 +41,10 @@ class CategoriesAdapter (
         }
 
         if (parentalMode) {
+            holder.binding.cardClose.setOnClickListener {
+                onCardClickListener.deleteCardPressed(myDataSet[position])
+            }
+
             holder.binding.singleCardHitbox.setOnLongClickListener {
                 //TODO: make haptic feedback work
                 it.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
