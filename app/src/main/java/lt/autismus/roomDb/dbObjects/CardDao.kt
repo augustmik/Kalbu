@@ -19,9 +19,10 @@ interface CardDao {
 
     @Insert //(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllCategories(categories: List<CategoriesDB>)
-//    @Query("SELECT * FROM Players WHERE idTeam = (:teamId)")
-//    fun loadAllByTeamId(teamId: Int): List<PlayerDB>
 
-//    @Delete
-//    fun delete(user: PlayerDB)
+    @Query("DELETE FROM Cards WHERE idCard = :cardId")
+    fun deleteCard(cardId: Int)
+
+    @Query("DELETE FROM Categories WHERE categoryName = :name")
+    fun deleteCategory(name: String)
 }

@@ -55,7 +55,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
     @Inject
     lateinit var sharedPrefs: SharedPreferences
 
-    lateinit var selectedCategoryName: String
+    private lateinit var selectedCategoryName: String
     private val mainActViewModel by lazy {
         ViewModelProvider(this, factory).get(MainActivityViewModel::class.java)
     }
@@ -217,7 +217,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         if (fragment is CardsFragment) {
             dialogHandler = DialogHandler(this, CardType.Card, defName)
         }
-        dialogHandler.setupFirst(images)
+        dialogHandler.setupFirst(images, selectedCategoryName)
     }
 
     override fun onBackPressed() {

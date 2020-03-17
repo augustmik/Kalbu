@@ -20,6 +20,13 @@ class CardsViewModel @Inject constructor(
             repository.updateCards(categoryName)
         }
     }
+
+    fun deleteCard(cardId : Int, categoryName: String){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteCard(cardId, categoryName)
+        }
+    }
+
     fun resetCardsLive(){
         repository.resetCardsLive()
     }

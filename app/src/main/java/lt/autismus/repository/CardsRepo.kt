@@ -34,4 +34,12 @@ class CardsRepo @Inject constructor(
     suspend fun updateCategories(){
         _allCategories.postValue(roomService.loadAllCategories().asListSingleCategory())
     }
+
+    suspend fun deleteCard(cardId: Int, categoryName: String){
+        _allCards.postValue(roomService.deleteCard(cardId, categoryName).asListCard())
+    }
+
+    suspend fun deleteCategory(categoryName: String){
+        _allCategories.postValue(roomService.deleteCategory(categoryName).asListSingleCategory())
+    }
 }

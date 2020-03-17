@@ -15,10 +15,10 @@ class DialogHandler(
     lateinit var images: List<Uri>
     var currentItem = 0
 
-    fun setupFirst(imagesL: List<Uri>) {
+    fun setupFirst(imagesL: List<Uri>, categoryName: String?) {
         images = imagesL
         if (cardType == CardType.Card) {
-            val card = SingleCard()
+            val card = SingleCard(category = categoryName)
             cards.add(card)
             callback.setupDialog(images[0], card)
         } else {

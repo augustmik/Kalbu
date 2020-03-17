@@ -4,6 +4,7 @@ import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import lt.autismus.R
@@ -39,11 +40,16 @@ class CardsAdapter(
         holder.binding.singleCardHitbox.setOnClickListener {
             onSingleCardClickListener.onCardClickedListener(myDataSet[position])
         }
+
         if (parentalMode) {
+            holder.binding.cardDelete.setOnClickListener {
+                onSingleCardClickListener.deleteCardPressed(myDataSet[position])
+            }
+
             holder.binding.singleCardHitbox.setOnLongClickListener {
                 //TODO: make haptic feedback work
                 it.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
-                holder.binding.cardClose.visibility = View.VISIBLE
+                holder.binding.cardDelete.visibility = View.VISIBLE
                 true
             }
         }

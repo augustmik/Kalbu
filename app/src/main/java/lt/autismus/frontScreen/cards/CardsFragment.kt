@@ -1,10 +1,13 @@
 package lt.autismus.frontScreen.cards
 
+import android.app.Dialog
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
+import lt.autismus.databinding.DialogDeleteCardBinding
 import lt.autismus.databinding.FragmentItemListBinding
 import lt.autismus.frontScreen.MainActivity
 import lt.autismus.singleUnits.SingleCard
@@ -31,7 +35,10 @@ class CardsFragment constructor(
     @Inject
     lateinit var sharedPrefs: SharedPreferences
 
+    private val deleteCardDialog: Dialog by lazy { Dialog(requireContext()) }
+
     lateinit var binding: FragmentItemListBinding
+    lateinit var dialogDeleteBinding : DialogDeleteCardBinding
     private val numberOfColumns = 1
 
     private val cardsViewModel by lazy {
@@ -77,5 +84,26 @@ class CardsFragment constructor(
 
     override fun onCardClickedListener(card: SingleCard) {
         (requireActivity() as MainActivity).displaySingleCard(card)
+    }
+
+    override fun deleteCardPressed(card: SingleCard) {
+        dialogDeleteBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(requireContext()),
+            R.layout.dialog_delete_card,
+            null,
+            false
+        )
+
+        dialogDeleteBinding.acceptButton.setOnClickListener {
+            cardsViewModel.deleteCard(card.id, clickedCategory)
+            deleteCardDialog.dismiss()
+        }
+        dialogDeleteBinding.cancelButton.setOnClickListener {
+            deleteCardDialog.dismiss()
+        }
+        dialogDeleteBinding.cardView.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+        dialogDeleteBinding.cardView.card = card
+        deleteCardDialog.setContentView(dialogDeleteBinding.root)
+        deleteCardDialog.show()
     }
 }

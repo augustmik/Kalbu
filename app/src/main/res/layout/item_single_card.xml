@@ -12,8 +12,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/single_card_hitbox"
         android:hapticFeedbackEnabled="true"
-        android:layout_width="344dp"
-        android:layout_height="266dp"
+        android:layout_width="@dimen/single_card_width"
+        android:layout_height="@dimen/single_card_height"
         android:layout_margin="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,7 @@
             android:background="@drawable/single_card_style">
 
             <ImageView
-                android:id="@+id/card_close"
+                android:id="@+id/card_delete"
                 android:layout_width="@dimen/dialog_close_button_size"
                 android:layout_height="@dimen/dialog_close_button_size"
                 android:src="@drawable/ic_close_black_24dp"
@@ -34,7 +34,7 @@
             <ImageView
                 android:id="@+id/card_image"
                 android:layout_width="0dp"
-                android:layout_height="194dp"
+                android:layout_height="@dimen/single_card_image_height"
                 android:contentDescription="@string/single_card_image_desc"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

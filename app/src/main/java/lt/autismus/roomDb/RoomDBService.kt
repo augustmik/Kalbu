@@ -34,4 +34,14 @@ class RoomDBService(context: Context) {
         db.cardsDao().insertAllCategories(categories)
         return db.cardsDao().getAllCategories()
     }
+
+    suspend fun deleteCard(cardId: Int, categoryName: String): List<CardDB> {
+        db.cardsDao().deleteCard(cardId)
+        return db.cardsDao().getAllCategoryCards(categoryName)
+    }
+
+    suspend fun deleteCategory(categoryName: String): List<CategoriesDB> {
+        db.cardsDao().deleteCategory(categoryName)
+        return db.cardsDao().getAllCategories()
+    }
 }
