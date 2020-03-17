@@ -11,12 +11,12 @@ import lt.autismus.databinding.ItemSingleCategoryBinding
 import lt.autismus.singleUnits.SingleCategory
 import lt.autismus.util.PictureCoder
 
-class CategoriesAdapter (
+class CategoriesAdapter(
     private var myDataSet: List<SingleCategory>,
     private val pictureCoder: PictureCoder,
     private val onCardClickListener: OnCardClickListener,
-    private val parentalMode: Boolean
-) : RecyclerView.Adapter<CategoriesAdapter.MyViewHolder>(){
+    private var parentalMode: Boolean
+) : RecyclerView.Adapter<CategoriesAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val myView = DataBindingUtil.inflate<ItemSingleCategoryBinding>(
@@ -39,21 +39,25 @@ class CategoriesAdapter (
         holder.binding.singleCardHitbox.setOnClickListener {
             onCardClickListener.clickedCategory(myDataSet[position].name)
         }
+        holder.binding.cardClose.setOnClickListener {
+            onCardClickListener.deleteCardPressed(myDataSet[position])
+        }
 
-        if (parentalMode) {
-            holder.binding.cardClose.setOnClickListener {
-                onCardClickListener.deleteCardPressed(myDataSet[position])
-            }
-
-            holder.binding.singleCardHitbox.setOnLongClickListener {
+        holder.binding.singleCardHitbox.setOnLongClickListener {
+            if (parentalMode) {
                 //TODO: make haptic feedback work
                 it.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                 holder.binding.cardClose.visibility = View.VISIBLE
-                true
             }
+            true
         }
+
     }
-    class MyViewHolder(val binding: ItemSingleCategoryBinding, private val pictureCoder: PictureCoder) :
+
+    class MyViewHolder(
+        val binding: ItemSingleCategoryBinding,
+        private val pictureCoder: PictureCoder
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(card: SingleCategory) {
@@ -65,5 +69,9 @@ class CategoriesAdapter (
     fun renewList(items: List<SingleCategory>) {
         myDataSet = items
         notifyDataSetChanged()
+    }
+
+    fun notifyParentalModeChanged(parentalMode: Boolean) {
+        this.parentalMode = parentalMode
     }
 }

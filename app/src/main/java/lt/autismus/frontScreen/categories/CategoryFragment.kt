@@ -40,6 +40,7 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
 
     lateinit var binding: FragmentItemListBinding
     private lateinit var dialogDeleteBinding: DialogDeleteCategoryBinding
+    private lateinit var mAdapter: CategoriesAdapter
 
     private val numberOfColumns = 1
 
@@ -60,10 +61,9 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
         categoriesViewModel.updateCategories()
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mAdapter = CategoriesAdapter(
+        mAdapter = CategoriesAdapter(
             listOf(),
             pictureCoder,
             this,
@@ -85,6 +85,9 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
         (requireActivity() as MainActivity).clickedCategory(categoryName)
     }
 
+    fun notifyParentalModeChanged(parentalMode :Boolean) {
+            mAdapter.notifyParentalModeChanged(parentalMode)
+    }
     override fun deleteCardPressed(card: SingleCategory) {
         dialogDeleteBinding = DataBindingUtil.inflate(
             LayoutInflater.from(requireContext()),

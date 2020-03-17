@@ -38,7 +38,8 @@ class CardsFragment constructor(
     private val deleteCardDialog: Dialog by lazy { Dialog(requireContext()) }
 
     lateinit var binding: FragmentItemListBinding
-    lateinit var dialogDeleteBinding : DialogDeleteCardBinding
+    lateinit var dialogDeleteBinding: DialogDeleteCardBinding
+    lateinit var mAdapter: CardsAdapter
     private val numberOfColumns = 1
 
     private val cardsViewModel by lazy {
@@ -49,6 +50,7 @@ class CardsFragment constructor(
         cardsViewModel.resetCardsLive()
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,7 +67,7 @@ class CardsFragment constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mAdapter = CardsAdapter(
+        mAdapter = CardsAdapter(
             listOf(),
             pictureCoder,
             this,
@@ -77,13 +79,18 @@ class CardsFragment constructor(
         })
 
         binding.itemRecycler.apply {
-            layoutManager = LinearLayoutManager(requireContext())//GridLayoutManager(requireContext(), numberOfColumns)
+            layoutManager =
+                LinearLayoutManager(requireContext())//GridLayoutManager(requireContext(), numberOfColumns)
             adapter = mAdapter
         }
     }
 
     override fun onCardClickedListener(card: SingleCard) {
         (requireActivity() as MainActivity).displaySingleCard(card)
+    }
+
+    fun notifyParentalModeChanged(parentalMode :Boolean) {
+            mAdapter.notifyParentalModeChanged(parentalMode)
     }
 
     override fun deleteCardPressed(card: SingleCard) {

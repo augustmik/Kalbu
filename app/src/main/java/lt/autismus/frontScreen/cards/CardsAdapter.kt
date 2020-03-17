@@ -16,7 +16,7 @@ class CardsAdapter(
     private var myDataSet: List<SingleCard>,
     private val pictureCoder: PictureCoder,
     private val onSingleCardClickListener: OnSingleCardClickedListener,
-    private val parentalMode: Boolean
+    private var parentalMode: Boolean
 ) : RecyclerView.Adapter<CardsAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -41,18 +41,20 @@ class CardsAdapter(
             onSingleCardClickListener.onCardClickedListener(myDataSet[position])
         }
 
-        if (parentalMode) {
-            holder.binding.cardDelete.setOnClickListener {
-                onSingleCardClickListener.deleteCardPressed(myDataSet[position])
-            }
+        holder.binding.cardDelete.setOnClickListener {
+            onSingleCardClickListener.deleteCardPressed(myDataSet[position])
+        }
 
-            holder.binding.singleCardHitbox.setOnLongClickListener {
-                //TODO: make haptic feedback work
+        holder.binding.singleCardHitbox.setOnLongClickListener {
+            //TODO: make haptic feedback work
+            if (parentalMode) {
+
                 it.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                 holder.binding.cardDelete.visibility = View.VISIBLE
-                true
             }
+            true
         }
+
     }
 
     class MyViewHolder(val binding: ItemSingleCardBinding, private val pictureCoder: PictureCoder) :
@@ -67,5 +69,9 @@ class CardsAdapter(
     fun renewList(items: List<SingleCard>) {
         myDataSet = items
         notifyDataSetChanged()
+    }
+
+    fun notifyParentalModeChanged(parentalMode: Boolean) {
+        this.parentalMode = parentalMode
     }
 }

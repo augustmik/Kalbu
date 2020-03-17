@@ -99,7 +99,13 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
     }
 
     override fun onResume() {
-        if (sharedPrefs.getBoolean(nameOfShared, false)){
+        val liveFragment = supportFragmentManager.findFragmentById(binding.mainFragmentContainer.id)
+        val parentalMode = sharedPrefs.getBoolean(nameOfShared, false)
+        if (liveFragment is CardsFragment){
+            liveFragment.notifyParentalModeChanged(parentalMode)
+        } else (liveFragment as CategoryFragment).notifyParentalModeChanged(parentalMode)
+
+        if (parentalMode){
             binding.createCardButton.visibility = View.VISIBLE
             binding.fabId.visibility = View.VISIBLE
         }
