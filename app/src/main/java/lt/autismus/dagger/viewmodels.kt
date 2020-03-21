@@ -10,6 +10,8 @@ import lt.autismus.frontScreen.categories.CategoriesViewModel
 import lt.autismus.frontScreen.MainActivityViewModel
 import lt.autismus.frontScreen.cards.CardsViewModel
 import lt.autismus.settings.SettingsViewModel
+import lt.autismus.story.cards.StoryCardsViewModel
+import lt.autismus.story.categories.StoryCategoriesViewModel
 import javax.inject.Inject
 import javax.inject.Provider
 import kotlin.reflect.KClass
@@ -51,6 +53,16 @@ abstract class CustomViewModelModule {
     @IntoMap
     @ViewModelKey(CardsViewModel::class)
     abstract fun bindCardsViewModel(customViewModel: CardsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StoryCategoriesViewModel::class)
+    abstract fun bindStoryCategoriesViewModel(customViewModel: StoryCategoriesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StoryCardsViewModel::class)
+    abstract fun bindStoryCardsViewModel(customViewModel: StoryCardsViewModel): ViewModel
 }
 
 @Module

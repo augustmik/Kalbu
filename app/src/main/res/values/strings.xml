@@ -10,4 +10,6 @@
     <string name="single_card_image_desc">Kortelės nuotrauka</string>
     <string name="default_category_name" />
     <string name="parental_mode_name">parental_mode</string>
+
+    <string name="card_selection_extra_intent">card_selection</string>
 </resources>

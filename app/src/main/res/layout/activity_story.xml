@@ -4,10 +4,10 @@
 
     <data>
         <variable
-            name="nowCard"
+            name="nowCardSelection"
             type="lt.autismus.singleUnits.SingleCard"/>
         <variable
-            name="thenCard"
+            name="thenCardSelection"
             type="lt.autismus.singleUnits.SingleCard"/>
     </data>
 
@@ -62,7 +62,7 @@
                     android:id="@+id/now_card_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{nowCard.title}"
+                    android:text="@{nowCardSelection.title}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +127,7 @@
                     android:id="@+id/after_card_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{thenCard.title}"
+                    android:text="@{thenCardSelection.title}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
