@@ -6,15 +6,17 @@
             name="card"
             type="lt.autismus.singleUnits.SingleCategory" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/single_card_width"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/card_iv"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/single_card_image_height"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,11 +24,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/card_text_hitbox"
-            android:layout_width="280dp"
-            android:layout_height="56dp"
+            android:layout_width="@dimen/create_card_dialog_text_input_width"
+            android:layout_height="@dimen/create_card_dialog_text_input_height"
             app:layout_constraintTop_toBottomOf="@id/card_iv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -52,8 +55,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/card_text_hitbox"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/card_text_hitbox"
             android:text="@string/create_card_button_accept"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </layout>

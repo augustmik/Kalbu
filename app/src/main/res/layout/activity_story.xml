@@ -4,12 +4,13 @@
 
     <data>
         <variable
-            name="card"
+            name="nowCard"
             type="lt.autismus.singleUnits.SingleCard"/>
         <variable
-            name="card2"
+            name="thenCard"
             type="lt.autismus.singleUnits.SingleCard"/>
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -20,30 +21,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/story_now"
-            app:layout_constraintBottom_toTopOf="@+id/now_image"
-            app:layout_constraintEnd_toEndOf="@+id/now_image"
-            app:layout_constraintStart_toStartOf="@+id/now_image"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/now_card"
+            app:layout_constraintEnd_toEndOf="@+id/now_card"
+            app:layout_constraintStart_toStartOf="@+id/now_card"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <ImageView
-            android:id="@+id/now_image"
-            android:layout_width="113dp"
-            android:layout_height="88dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/now_card"
+            android:layout_width="@dimen/single_card_width"
+            android:layout_height="@dimen/single_card_height"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/now_tv"
-            app:layout_constraintVertical_chainStyle="packed"
-             />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/single_card_style">
+
+                <ImageView
+                    android:id="@+id/now_card_cancel"
+                    android:layout_width="@dimen/dialog_close_button_size"
+                    android:layout_height="@dimen/dialog_close_button_size"
+                    android:src="@drawable/ic_close_black_24dp"
+                    android:tint="@color/colorPrimary"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/now_card_image"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/single_card_image_height"
+                    android:contentDescription="@string/single_card_image_desc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/now_card_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{nowCard.title}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/now_card_image" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <ImageView
             android:id="@+id/arrow_iv"
             android:layout_width="0dp"
             android:layout_height="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/later_image"
+            app:layout_constraintEnd_toStartOf="@+id/after_card"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/now_image"
+            app:layout_constraintStart_toEndOf="@+id/now_card"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/right_arrow" />
 
@@ -52,20 +86,53 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/story_then"
-            app:layout_constraintBottom_toTopOf="@id/later_image"
-            app:layout_constraintEnd_toEndOf="@id/later_image"
-            app:layout_constraintStart_toStartOf="@id/later_image"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/after_card"
+            app:layout_constraintEnd_toEndOf="@id/after_card"
+            app:layout_constraintStart_toStartOf="@id/after_card"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <ImageView
-            android:id="@+id/later_image"
-            android:layout_width="98dp"
-            android:layout_height="74dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/after_card"
+            android:layout_width="@dimen/single_card_width"
+            android:layout_height="@dimen/single_card_height"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/later_tv"
-            app:layout_constraintVertical_chainStyle="packed"
-             />
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/single_card_style">
+
+                <ImageView
+                    android:id="@+id/after_card_cancel"
+                    android:layout_width="@dimen/dialog_close_button_size"
+                    android:layout_height="@dimen/dialog_close_button_size"
+                    android:src="@drawable/ic_close_black_24dp"
+                    android:tint="@color/colorPrimary"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/after_card_image"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/single_card_image_height"
+                    android:contentDescription="@string/single_card_image_desc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/after_card_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{thenCard.title}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/after_card_image" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

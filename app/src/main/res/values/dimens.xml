@@ -6,4 +6,9 @@
     <dimen name="single_card_image_height">194dp</dimen>
     <dimen name="single_card_width">344dp</dimen>
     <dimen name="single_card_height">266dp</dimen>
+    <dimen name="dialog_padding">24dp</dimen>
+    <dimen name="dialog_height">380dp</dimen>
+    <dimen name="create_card_dialog_text_input_margin_End">24dp</dimen>
+    <dimen name="create_card_dialog_text_input_width">280dp</dimen>
+    <dimen name="create_card_dialog_text_input_height">56dp</dimen>
 </resources>
