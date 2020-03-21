@@ -2,6 +2,7 @@ package lt.autismus.story
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import dagger.android.support.DaggerAppCompatActivity
@@ -19,7 +20,7 @@ class StoryActivity : DaggerAppCompatActivity() {
     lateinit var pictureCoder: PictureCoder
 
     lateinit var binding: ActivityStoryBinding
-    lateinit var cardHelper: StoryCardHelper
+    private lateinit var cardHelper: StoryCardHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +55,28 @@ class StoryActivity : DaggerAppCompatActivity() {
         cardSelector.nowCard.observe(this, Observer {
             if (it != null) {
                 cardHelper.setupNowCard(it)
-            }
+            } else resetCard(0)
         })
         cardSelector.thenCard.observe(this, Observer {
             if (it != null) {
                 cardHelper.setupThenCard(it)
-            }
+            } else resetCard(1)
         })
+    }
+
+    private fun resetCard(resetCardIndex : Int){
+        when(resetCardIndex){
+            0 -> {
+                binding.nowCardImage.setImageResource(0)
+                binding.nowCardSelection = null
+                binding.nowCardCancel.visibility = View.GONE
+            }
+            1 -> {
+                binding.afterCardImage.setImageResource(0)
+                binding.thenCardSelection = null
+                binding.afterCardCancel.visibility = View.GONE
+            }
+        }
     }
 
 }
