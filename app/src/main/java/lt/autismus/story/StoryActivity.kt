@@ -9,6 +9,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import lt.autismus.R
 import lt.autismus.databinding.ActivityStoryBinding
 import lt.autismus.util.PictureCoder
+import lt.autismus.util.TimedViewHider
 import javax.inject.Inject
 
 class StoryActivity : DaggerAppCompatActivity() {
@@ -18,6 +19,9 @@ class StoryActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var pictureCoder: PictureCoder
+
+    @Inject
+    lateinit var timerHandler: TimedViewHider
 
     lateinit var binding: ActivityStoryBinding
     private lateinit var cardHelper: StoryCardHelper
@@ -34,7 +38,7 @@ class StoryActivity : DaggerAppCompatActivity() {
 
         setContentView(binding.root)
         setupCardSelection()
-        cardHelper = StoryCardHelper(binding, pictureCoder, cardSelector)
+        cardHelper = StoryCardHelper(binding, pictureCoder, cardSelector, timerHandler)
     }
 
     private fun setupCardSelection() {

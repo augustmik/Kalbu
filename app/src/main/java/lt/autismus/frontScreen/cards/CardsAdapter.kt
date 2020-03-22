@@ -11,12 +11,14 @@ import lt.autismus.R
 import lt.autismus.databinding.ItemSingleCardBinding
 import lt.autismus.singleUnits.SingleCard
 import lt.autismus.util.PictureCoder
+import lt.autismus.util.TimedViewHider
 
 class CardsAdapter(
     private var myDataSet: List<SingleCard>,
     private val pictureCoder: PictureCoder,
     private val onSingleCardClickListener: OnSingleCardClickedListener,
-    private var parentalMode: Boolean
+    private var parentalMode: Boolean,
+    private val timedViewHider: TimedViewHider
 ) : RecyclerView.Adapter<CardsAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -51,6 +53,7 @@ class CardsAdapter(
 
                 it.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                 holder.binding.cardDelete.visibility = View.VISIBLE
+                timedViewHider.hideViewTimer(holder.binding.cardDelete)
             }
             true
         }

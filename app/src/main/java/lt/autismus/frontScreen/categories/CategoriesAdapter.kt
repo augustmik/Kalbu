@@ -10,12 +10,14 @@ import lt.autismus.R
 import lt.autismus.databinding.ItemSingleCategoryBinding
 import lt.autismus.singleUnits.SingleCategory
 import lt.autismus.util.PictureCoder
+import lt.autismus.util.TimedViewHider
 
 class CategoriesAdapter(
     private var myDataSet: List<SingleCategory>,
     private val pictureCoder: PictureCoder,
     private val onCardClickListener: OnCardClickListener,
-    private var parentalMode: Boolean
+    private var parentalMode: Boolean,
+    private val timedViewHider: TimedViewHider
 ) : RecyclerView.Adapter<CategoriesAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -48,6 +50,7 @@ class CategoriesAdapter(
                 //TODO: make haptic feedback work
                 it.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                 holder.binding.cardClose.visibility = View.VISIBLE
+                timedViewHider.hideViewTimer(holder.binding.cardClose)
             }
             true
         }

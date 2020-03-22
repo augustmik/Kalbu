@@ -8,6 +8,7 @@ import dagger.Module
 import dagger.Provides
 import lt.autismus.roomDb.RoomDBService
 import lt.autismus.util.PictureCoder
+import lt.autismus.util.TimedViewHider
 import javax.inject.Singleton
 
 
@@ -29,4 +30,8 @@ class AppModule(private val app: Application) {
     @Provides
     @Singleton
     fun providePictureCoder(): PictureCoder = PictureCoder(app)
+
+    @Provides
+    @Singleton
+    fun provideViewHiderTimer() : TimedViewHider = TimedViewHider()
 }

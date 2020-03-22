@@ -20,6 +20,7 @@ import lt.autismus.databinding.FragmentItemListBinding
 import lt.autismus.frontScreen.MainActivity
 import lt.autismus.singleUnits.SingleCard
 import lt.autismus.util.PictureCoder
+import lt.autismus.util.TimedViewHider
 import javax.inject.Inject
 
 class CardsFragment constructor(
@@ -34,6 +35,9 @@ class CardsFragment constructor(
 
     @Inject
     lateinit var sharedPrefs: SharedPreferences
+
+    @Inject
+    lateinit var timedViewHider: TimedViewHider
 
     private val deleteCardDialog: Dialog by lazy { Dialog(requireContext()) }
 
@@ -71,7 +75,8 @@ class CardsFragment constructor(
             listOf(),
             pictureCoder,
             this,
-            sharedPrefs.getBoolean(getString(R.string.parental_mode_name), false)
+            sharedPrefs.getBoolean(getString(R.string.parental_mode_name), false),
+            timedViewHider
         )
 
         cardsViewModel.cardsLive.observe(viewLifecycleOwner, Observer {

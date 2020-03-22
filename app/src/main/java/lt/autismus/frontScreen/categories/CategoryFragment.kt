@@ -20,6 +20,7 @@ import lt.autismus.frontScreen.MainActivity
 import lt.autismus.repository.CardsRepo
 import lt.autismus.singleUnits.SingleCategory
 import lt.autismus.util.PictureCoder
+import lt.autismus.util.TimedViewHider
 import javax.inject.Inject
 
 class CategoryFragment : DaggerFragment(), OnCardClickListener {
@@ -35,6 +36,9 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
 
     @Inject
     lateinit var sharedPrefs: SharedPreferences
+
+    @Inject
+    lateinit var timedViewHider: TimedViewHider
 
     private val deleteCardDialog: Dialog by lazy { Dialog(requireContext()) }
 
@@ -67,7 +71,8 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
             listOf(),
             pictureCoder,
             this,
-            sharedPrefs.getBoolean(getString(R.string.parental_mode_name), false)
+            sharedPrefs.getBoolean(getString(R.string.parental_mode_name), false),
+            timedViewHider
         )
 
         categoriesViewModel.categoriesLive.observe(viewLifecycleOwner, Observer {

@@ -4,11 +4,13 @@ import android.view.View
 import lt.autismus.databinding.ActivityStoryBinding
 import lt.autismus.singleUnits.SingleCard
 import lt.autismus.util.PictureCoder
+import lt.autismus.util.TimedViewHider
 
 class StoryCardHelper (
     val binding: ActivityStoryBinding,
     val pictureCoder: PictureCoder,
-    private val cardSelector: CardSelection
+    private val cardSelector: CardSelection,
+    private val timedViewHider: TimedViewHider
 ) {
 
     fun setupNowCard(card: SingleCard){
@@ -17,6 +19,7 @@ class StoryCardHelper (
 
         binding.nowCard.setOnLongClickListener {
             binding.nowCardCancel.visibility = View.VISIBLE
+            timedViewHider.hideViewTimer(binding.nowCardCancel)
             true
         }
 
@@ -31,6 +34,7 @@ class StoryCardHelper (
 
         binding.afterCard.setOnLongClickListener {
             binding.afterCardCancel.visibility = View.VISIBLE
+            timedViewHider.hideViewTimer(binding.afterCardCancel)
             true
         }
 
