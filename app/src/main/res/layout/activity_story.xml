@@ -30,8 +30,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/now_card"
-            android:layout_width="@dimen/single_card_width"
-            android:layout_height="@dimen/single_card_height"
+            android:layout_width="@dimen/stories_card_width"
+            android:layout_height="@dimen/stories_card_height"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -100,8 +100,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/after_card"
-            android:layout_width="@dimen/single_card_width"
-            android:layout_height="@dimen/single_card_height"
+            android:layout_width="@dimen/stories_card_width"
+            android:layout_height="@dimen/stories_card_height"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
