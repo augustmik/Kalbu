@@ -19,10 +19,10 @@ class CardSelection {
         _thenCard.postValue(card)
     }
 
-    fun resetCardSelector(){
-        _nowCard.postValue(null)
-        _thenCard.postValue(null)
-    }
+//    fun resetCardSelector(){
+//        _nowCard.postValue(null)
+//        _thenCard.postValue(null)
+//    }
 
     fun resetNowCardSelector(){
         _nowCard.postValue(null)
