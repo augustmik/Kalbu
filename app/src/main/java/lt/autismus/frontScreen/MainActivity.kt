@@ -33,7 +33,6 @@ import lt.autismus.story.StoryActivity
 import lt.autismus.util.PictureCoder
 import java.io.File
 import java.io.IOException
-import java.sql.SQLIntegrityConstraintViolationException
 import java.text.DateFormat
 import java.util.*
 import javax.inject.Inject
@@ -130,6 +129,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         dialogBinding.takePictureHitbox.setOnClickListener { takeAPicture() }
         dialogBinding.loadFromGalleryHitbox.setOnClickListener { selectImagesGallery() }
         dialogBinding.backButton.setOnClickListener { selectSourceDialog.dismiss() }
+        selectSourceDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         selectSourceDialog.setContentView(dialogBinding.root)
 
         binding.fabId.setOnClickListener {
