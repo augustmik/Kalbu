@@ -29,7 +29,7 @@
                     android:background="@drawable/delete_item_shape_oval"
                     android:elevation="@dimen/delete_card_button_elevation"
                     android:src="@drawable/ic_close_black_24dp"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/colorCards"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
