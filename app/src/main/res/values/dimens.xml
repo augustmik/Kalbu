@@ -16,4 +16,7 @@
     <dimen name="main_activity_title_text_size">20sp</dimen>
 
     <dimen name="card_corner_radius">20dp</dimen>
+    <dimen name="card_text_size">20sp</dimen>
+
+    <dimen name="stories_then_now_text_size">24sp</dimen>
 </resources>
