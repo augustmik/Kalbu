@@ -68,6 +68,8 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
             null,
             false
         )
+        resetTitleToCategory()
+
         setContentView(binding.root)
         supportFragmentManager.beginTransaction()
             .add(
@@ -225,7 +227,9 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         }
         dialogHandler.setupFirst(images, selectedCategoryName)
     }
-
+    private fun resetTitleToCategory(){
+        binding.titlePage.text = getString(R.string.category_page_title)
+    }
     override fun onBackPressed() {
         val defaultValue = getString(R.string.default_category_name)
         if (selectedCategoryName != defaultValue) {
@@ -234,6 +238,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
                     binding.mainFragmentContainer.id,
                     CategoryFragment()
                 ).commit()
+            resetTitleToCategory()
             selectedCategoryName = defaultValue
         } else {
             super.onBackPressed()
@@ -308,6 +313,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
                 binding.mainFragmentContainer.id,
                 CardsFragment(categoryName)
             ).commit()
+        binding.titlePage.text = categoryName
     }
 
     fun displaySingleCard(cardItem: SingleCard) {
