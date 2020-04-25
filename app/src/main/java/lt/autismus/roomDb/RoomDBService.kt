@@ -15,9 +15,9 @@ class RoomDBService(context: Context) {
         .fallbackToDestructiveMigration()
         .build()
 
-    suspend fun addAllCards(cards: List<CardDB>): List<CardDB> {
+    suspend fun addAllCards(cards: List<CardDB>, category: String): List<CardDB> {
         db.cardsDao().insertAll(cards)
-        return db.cardsDao().getAll()
+        return db.cardsDao().getAllCategoryCards(category)
     }
 
     suspend fun loadAllCards(): List<CardDB> {

@@ -19,8 +19,8 @@ class CardsRepo @Inject constructor(
 
     fun resetCardsLive() = _allCards.postValue(listOf())
 
-    suspend fun addAllToDB(cards : List<SingleCard>){
-        val dbItems = roomService.addAllCards(cards.asListCardDB())
+    suspend fun addAllToDB(cards : List<SingleCard>, selectedCategory: String){
+        val dbItems = roomService.addAllCards(cards.asListCardDB(), selectedCategory)
         _allCards.postValue(dbItems.asListCard())
     }
 

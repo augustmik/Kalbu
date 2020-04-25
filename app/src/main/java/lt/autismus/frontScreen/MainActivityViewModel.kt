@@ -18,7 +18,7 @@ class MainActivityViewModel @Inject constructor(
                 cards[index].image = images[index]
                 cards[index].category = selectedCategory
             }
-            repository.addAllToDB(cards)
+            repository.addAllToDB(cards, selectedCategory)
         }
     }
 
