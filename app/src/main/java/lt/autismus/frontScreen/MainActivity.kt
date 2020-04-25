@@ -177,7 +177,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
     }
 
     private fun selectImagesGallery() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         startActivityForResult(intent, PICK_GALLERY_REQUEST_CODE)
