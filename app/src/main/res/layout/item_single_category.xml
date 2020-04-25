@@ -11,7 +11,7 @@
         android:id="@+id/single_card_hitbox"
         android:hapticFeedbackEnabled="true"
         android:layout_margin="5dp"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="@dimen/card_corner_radius"
         android:layout_width="344dp"
         android:layout_height="266dp">
 
