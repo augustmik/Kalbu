@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.ClipData
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -344,6 +346,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         createEnlargerDialogBinding.card = cardItem
 //        createEnlargerDialogBinding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(cardItem.image))
         createEnlargerDialogBinding.cardImage.setImageURI(pictureCoder.decodeB64ToBitmap(cardItem.image))
+        createEnlargerDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         createEnlargerDialog.setContentView(createEnlargerDialogBinding.root)
         createEnlargerDialog.show()
     }
