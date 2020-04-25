@@ -13,5 +13,7 @@
 
     <string name="card_selection_extra_intent">card_selection</string>
 
+    <string name="category_already_exists_error">Tokia kategorija jau egzistuoja.</string>
+
     <string name="category_page_title">Kategorijos</string>
 </resources>

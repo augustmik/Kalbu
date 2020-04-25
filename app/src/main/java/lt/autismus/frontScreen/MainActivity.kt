@@ -4,10 +4,12 @@ import android.app.Dialog
 import android.content.ClipData
 import android.content.Intent
 import android.content.SharedPreferences
+import android.database.sqlite.SQLiteConstraintException
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -31,6 +33,7 @@ import lt.autismus.story.StoryActivity
 import lt.autismus.util.PictureCoder
 import java.io.File
 import java.io.IOException
+import java.sql.SQLIntegrityConstraintViolationException
 import java.text.DateFormat
 import java.util.*
 import javax.inject.Inject
@@ -95,7 +98,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         setupDialog()
     }
 
-    private fun resetParentalMode(){
+    private fun resetParentalMode() {
         val editor = sharedPrefs.edit()
         editor.putBoolean(nameOfShared, false).apply()
     }
@@ -103,20 +106,20 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
     override fun onResume() {
         val liveFragment = supportFragmentManager.findFragmentById(binding.mainFragmentContainer.id)
         val parentalMode = sharedPrefs.getBoolean(nameOfShared, false)
-        if (liveFragment is CardsFragment){
+        if (liveFragment is CardsFragment) {
             liveFragment.notifyParentalModeChanged(parentalMode)
         } else (liveFragment as CategoryFragment).notifyParentalModeChanged(parentalMode)
 
-        if (parentalMode){
+        if (parentalMode) {
             binding.createCardButton.visibility = View.VISIBLE
             binding.fabId.visibility = View.VISIBLE
-        }
-        else {
+        } else {
             binding.createCardButton.visibility = View.GONE
             binding.fabId.visibility = View.GONE
         }
         super.onResume()
     }
+
     private fun setupDialog() {
         dialogBinding = DataBindingUtil.inflate(
             LayoutInflater.from(this),
@@ -227,9 +230,11 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         }
         dialogHandler.setupFirst(images, selectedCategoryName)
     }
-    private fun resetTitleToCategory(){
+
+    private fun resetTitleToCategory() {
         binding.titlePage.text = getString(R.string.category_page_title)
     }
+
     override fun onBackPressed() {
         val defaultValue = getString(R.string.default_category_name)
         if (selectedCategoryName != defaultValue) {
@@ -292,14 +297,28 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
             if (categoryItem.name == getString(R.string.default_category_name)) {
                 Toast.makeText(this, "Klaida! Pavadinimas tuscias!", Toast.LENGTH_LONG).show()
             } else {
-                createCardDialog.dismiss()
-                dialogHandler.loadNext()
+                if (checkIfNameDoesntExist(categoryItem.name)) {
+                    createCardDialog.dismiss()
+                    dialogHandler.loadNext()
+
+                } else {
+                    Toast.makeText(this, getString(R.string.category_already_exists_error), Toast.LENGTH_LONG).show()
+                }
             }
         }
         createDialogCatBinding.cancelButton.setOnClickListener {
             createCardDialog.dismiss()
 //            dialogHandler.loadNext()
         }
+    }
+
+    private fun checkIfNameDoesntExist(selectedCategory: String): Boolean {
+        var answer = true
+        val fm = supportFragmentManager
+        val fragment = fm.findFragmentById(binding.mainFragmentContainer.id) as CategoryFragment
+        val namesTaken = fragment.mAdapter.getNames()
+        if (namesTaken.contains(selectedCategory)) answer = false
+        return answer
     }
 
     override fun setupDialogCatLast(images: List<Uri>, categories: List<SingleCategory>) {

@@ -44,7 +44,7 @@ class CategoryFragment : DaggerFragment(), OnCardClickListener {
 
     lateinit var binding: FragmentItemListBinding
     private lateinit var dialogDeleteBinding: DialogDeleteCategoryBinding
-    private lateinit var mAdapter: CategoriesAdapter
+    lateinit var mAdapter: CategoriesAdapter
 
     private val numberOfColumns = 1
 

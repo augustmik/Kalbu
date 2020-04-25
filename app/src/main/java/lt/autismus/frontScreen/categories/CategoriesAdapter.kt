@@ -75,6 +75,14 @@ class CategoriesAdapter(
         notifyDataSetChanged()
     }
 
+    fun getNames(): List<String>{
+        val takenNames : MutableList<String> = mutableListOf()
+        for (item in myDataSet){
+            takenNames.add(item.name)
+        }
+        return takenNames
+    }
+
     fun notifyParentalModeChanged(parentalMode: Boolean) {
         this.parentalMode = parentalMode
     }
