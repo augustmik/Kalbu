@@ -65,7 +65,8 @@ class CategoriesAdapter(
 
         fun bind(card: SingleCategory) {
             binding.card = card
-            binding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+//            binding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+            binding.cardImage.setImageURI(pictureCoder.decodeB64ToBitmap(card.image))
         }
     }
 

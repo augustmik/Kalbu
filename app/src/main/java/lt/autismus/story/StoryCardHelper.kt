@@ -15,7 +15,8 @@ class StoryCardHelper (
 
     fun setupNowCard(card: SingleCard){
         binding.nowCardSelection = card
-        binding.nowCardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+//        binding.nowCardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+        binding.nowCardImage.setImageURI(pictureCoder.decodeB64ToBitmap(card.image))
 
         binding.nowCard.setOnLongClickListener {
             binding.nowCardCancel.visibility = View.VISIBLE
@@ -30,7 +31,8 @@ class StoryCardHelper (
 
     fun setupThenCard(card: SingleCard){
         binding.thenCardSelection = card
-        binding.afterCardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+//        binding.afterCardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+        binding.afterCardImage.setImageURI(pictureCoder.decodeB64ToBitmap(card.image))
 
         binding.afterCard.setOnLongClickListener {
             binding.afterCardCancel.visibility = View.VISIBLE

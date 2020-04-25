@@ -43,7 +43,8 @@ class StoryCardsAdapter(
 
         fun bind(card: SingleCard) {
             binding.card = card
-            binding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+//            binding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+            binding.cardImage.setImageURI(pictureCoder.decodeB64ToBitmap(card.image))
         }
     }
 

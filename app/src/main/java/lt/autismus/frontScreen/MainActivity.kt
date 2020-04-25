@@ -319,7 +319,8 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
             false
         )
         createEnlargerDialogBinding.card = cardItem
-        createEnlargerDialogBinding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(cardItem.image))
+//        createEnlargerDialogBinding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(cardItem.image))
+        createEnlargerDialogBinding.cardImage.setImageURI(pictureCoder.decodeB64ToBitmap(cardItem.image))
         createEnlargerDialog.setContentView(createEnlargerDialogBinding.root)
         createEnlargerDialog.show()
     }

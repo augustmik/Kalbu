@@ -113,7 +113,8 @@ class CardsFragment constructor(
         dialogDeleteBinding.cancelButton.setOnClickListener {
             deleteCardDialog.dismiss()
         }
-        dialogDeleteBinding.cardView.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+//        dialogDeleteBinding.cardView.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
+        dialogDeleteBinding.cardView.cardImage.setImageURI(pictureCoder.decodeB64ToBitmap(card.image))
         dialogDeleteBinding.cardView.card = card
         deleteCardDialog.setContentView(dialogDeleteBinding.root)
         deleteCardDialog.show()
