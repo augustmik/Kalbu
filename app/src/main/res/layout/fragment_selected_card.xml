@@ -10,13 +10,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:radius="20dp"
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/single_card_hitbox"
             android:layout_width="344dp"
             android:layout_height="266dp"
             android:layout_margin="5dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

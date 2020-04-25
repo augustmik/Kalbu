@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import dagger.android.support.DaggerAppCompatActivity
 import lt.autismus.R
 import lt.autismus.databinding.ActivitySelectionBinding
-import lt.autismus.frontScreen.cards.CardsFragment
 import lt.autismus.singleUnits.SingleCard
 import lt.autismus.story.cards.StoryCardsFragment
 import lt.autismus.story.categories.StoryCategoryFragment
