@@ -29,12 +29,38 @@ class SelectionActivity @Inject constructor() : DaggerAppCompatActivity() {
             false)
 
         setContentView(binding.root)
+
+        selectedCategoryName = getString(R.string.default_category_name)
+        resetTitleToCategory()
+
         supportFragmentManager.beginTransaction()
             .add(
                 binding.mainFragmentContainer.id,
                 StoryCategoryFragment()
             )
             .commit()
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    override fun onBackPressed() {
+        val defaultValue = getString(R.string.default_category_name)
+        if (selectedCategoryName != defaultValue) {
+            supportFragmentManager.beginTransaction()
+                .replace(
+                    binding.mainFragmentContainer.id,
+                    StoryCategoryFragment()
+                ).commit()
+            resetTitleToCategory()
+            selectedCategoryName = defaultValue
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    private fun resetTitleToCategory() {
+        binding.titlePage.text = getString(R.string.category_page_title)
     }
 
     fun clickedCategory(categoryName: String) {
@@ -44,6 +70,8 @@ class SelectionActivity @Inject constructor() : DaggerAppCompatActivity() {
                 binding.mainFragmentContainer.id,
                 StoryCardsFragment(categoryName)
             ).commit()
+
+        binding.titlePage.text = categoryName
     }
 
     fun cardSelected(card: SingleCard){

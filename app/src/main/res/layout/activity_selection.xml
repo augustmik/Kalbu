@@ -30,7 +30,7 @@
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/create_card_button"
+                            android:id="@+id/back_button"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_marginStart="16dp"
@@ -38,6 +38,17 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/title_page"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorTitle"
+                            android:textSize="@dimen/main_activity_title_text_size"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.appcompat.widget.Toolbar>
 
