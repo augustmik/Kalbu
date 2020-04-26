@@ -6,6 +6,10 @@
         app:title="Tėvo rėžimas" />
 
     <Preference
+        app:key="download_images"
+        app:title="@string/settings_download_images" />
+
+    <Preference
         app:key="about"
         app:title="@string/settings_about" />
 </PreferenceScreen>

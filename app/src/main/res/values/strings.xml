@@ -2,6 +2,7 @@
     <string name="app_name">Autismus</string>
     <string name="settings_parental_mode">Tėvų rėžimas</string>
     <string name="settings_about">Apie</string>
+    <string name="settings_download_images">Parsisiųsti paveiklėlių</string>
     <string name="story_now">Dabar</string>
     <string name="story_then">Po to</string>
 
@@ -25,4 +26,7 @@
     <string name="select_source_dialog_title">Pasirinkite šaltinį</string>
     <string name="select_source_take_picture">Fotografuoti</string>
     <string name="select_source_from_galery_text">Pasirinkti iš galerijos</string>
+
+
+    <string name="add_more_images_link">https://www.flaticon.com/</string>
 </resources>
