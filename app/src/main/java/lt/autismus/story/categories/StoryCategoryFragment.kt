@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
-import lt.autismus.databinding.FragmentStoryCategoryBinding
+import lt.autismus.databinding.FragmentItemListBinding
 import lt.autismus.frontScreen.categories.CategoriesViewModel
 import lt.autismus.story.SelectionActivity
 import lt.autismus.util.PictureCoder
@@ -25,7 +25,7 @@ class StoryCategoryFragment : DaggerFragment(), OnStoryCategoryClickListener {
     @Inject
     lateinit var pictureCoder: PictureCoder
 
-    lateinit var binding: FragmentStoryCategoryBinding
+    lateinit var binding: FragmentItemListBinding
     private lateinit var mAdapter: StoryCategoriesAdapter
 
     private val categoriesViewModel by lazy {
@@ -38,7 +38,7 @@ class StoryCategoryFragment : DaggerFragment(), OnStoryCategoryClickListener {
     ): View? {
         binding = DataBindingUtil.inflate(
             layoutInflater,
-            R.layout.fragment_story_category,
+            R.layout.fragment_item_list,
             null,
             false
         )
