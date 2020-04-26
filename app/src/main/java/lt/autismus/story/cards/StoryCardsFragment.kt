@@ -59,7 +59,8 @@ class StoryCardsFragment constructor(
         mAdapter = StoryCardsAdapter(
             listOf(),
             pictureCoder,
-            this
+            this,
+            requireContext()
         )
 
         cardsViewModel.cardsLive.observe(viewLifecycleOwner, Observer {

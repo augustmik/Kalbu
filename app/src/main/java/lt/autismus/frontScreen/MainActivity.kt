@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import dagger.android.support.DaggerAppCompatActivity
 import lt.autismus.BIGGER_DIM_AMOUNT
 import lt.autismus.PICK_GALLERY_REQUEST_CODE
@@ -345,8 +346,12 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
             false
         )
         createEnlargerDialogBinding.card = cardItem
-//        createEnlargerDialogBinding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(cardItem.image))
-        createEnlargerDialogBinding.cardImage.setImageURI(pictureCoder.decodeB64ToBitmap(cardItem.image))
+
+        Glide.with(this)
+            .load(pictureCoder.decodeB64ToBitmap(cardItem.image))
+            .fitCenter()
+            .into(createEnlargerDialogBinding.cardImage)
+
         createEnlargerDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         createEnlargerDialog.window?.setDimAmount(BIGGER_DIM_AMOUNT)
         createEnlargerDialog.setContentView(createEnlargerDialogBinding.root)

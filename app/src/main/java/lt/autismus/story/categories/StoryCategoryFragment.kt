@@ -51,7 +51,8 @@ class StoryCategoryFragment : DaggerFragment(), OnStoryCategoryClickListener {
         mAdapter = StoryCategoriesAdapter(
             listOf(),
             pictureCoder,
-            this
+            this,
+            requireContext()
         )
 
         categoriesViewModel.categoriesLive.observe(viewLifecycleOwner, Observer {

@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import dagger.android.support.DaggerFragment
 import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
@@ -76,7 +77,8 @@ class CardsFragment constructor(
             pictureCoder,
             this,
             sharedPrefs.getBoolean(getString(R.string.parental_mode_name), false),
-            timedViewHider
+            timedViewHider,
+            requireContext()
         )
 
         cardsViewModel.cardsLive.observe(viewLifecycleOwner, Observer {
@@ -113,8 +115,12 @@ class CardsFragment constructor(
         dialogDeleteBinding.cancelButton.setOnClickListener {
             deleteCardDialog.dismiss()
         }
-//        dialogDeleteBinding.cardView.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
-        dialogDeleteBinding.cardView.cardImage.setImageURI(pictureCoder.decodeB64ToBitmap(card.image))
+
+        Glide.with(requireContext())
+            .load(pictureCoder.decodeB64ToBitmap(card.image))
+            .fitCenter()
+            .into(dialogDeleteBinding.cardView.cardImage)
+
         dialogDeleteBinding.cardView.card = card
         deleteCardDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         deleteCardDialog.setContentView(dialogDeleteBinding.root)

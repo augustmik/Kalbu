@@ -1,6 +1,8 @@
 package lt.autismus.story
 
+import android.content.Context
 import android.view.View
+import com.bumptech.glide.Glide
 import lt.autismus.databinding.ActivityStoryBinding
 import lt.autismus.singleUnits.SingleCard
 import lt.autismus.util.PictureCoder
@@ -13,10 +15,13 @@ class StoryCardHelper (
     private val timedViewHider: TimedViewHider
 ) {
 
-    fun setupNowCard(card: SingleCard){
+    fun setupNowCard(card: SingleCard, context: Context){
         binding.nowCardSelection = card
-//        binding.nowCardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
-        binding.nowCardImage.setImageURI(pictureCoder.decodeB64ToBitmap(card.image))
+
+        Glide.with(context)
+            .load(pictureCoder.decodeB64ToBitmap(card.image))
+            .fitCenter()
+            .into(binding.nowCardImage)
 
         binding.nowCard.setOnLongClickListener {
             binding.nowCardCancel.visibility = View.VISIBLE
@@ -29,10 +34,13 @@ class StoryCardHelper (
         }
     }
 
-    fun setupThenCard(card: SingleCard){
+    fun setupThenCard(card: SingleCard, context: Context){
         binding.thenCardSelection = card
-//        binding.afterCardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
-        binding.afterCardImage.setImageURI(pictureCoder.decodeB64ToBitmap(card.image))
+
+        Glide.with(context)
+            .load(pictureCoder.decodeB64ToBitmap(card.image))
+            .fitCenter()
+            .into(binding.afterCardImage)
 
         binding.afterCard.setOnLongClickListener {
             binding.afterCardCancel.visibility = View.VISIBLE

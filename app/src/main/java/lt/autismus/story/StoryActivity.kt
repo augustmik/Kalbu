@@ -58,12 +58,12 @@ class StoryActivity : DaggerAppCompatActivity() {
 
         cardSelector.nowCard.observe(this, Observer {
             if (it != null) {
-                cardHelper.setupNowCard(it)
+                cardHelper.setupNowCard(it, this)
             } else resetCard(0)
         })
         cardSelector.thenCard.observe(this, Observer {
             if (it != null) {
-                cardHelper.setupThenCard(it)
+                cardHelper.setupThenCard(it, this)
             } else resetCard(1)
         })
     }

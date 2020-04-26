@@ -1,11 +1,13 @@
 package lt.autismus.frontScreen.categories
 
+import android.content.Context
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import lt.autismus.R
 import lt.autismus.databinding.ItemSingleCategoryBinding
 import lt.autismus.singleUnits.SingleCategory
@@ -17,7 +19,8 @@ class CategoriesAdapter(
     private val pictureCoder: PictureCoder,
     private val onCardClickListener: OnCardClickListener,
     private var parentalMode: Boolean,
-    private val timedViewHider: TimedViewHider
+    private val timedViewHider: TimedViewHider,
+    private val context: Context
 ) : RecyclerView.Adapter<CategoriesAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -36,7 +39,7 @@ class CategoriesAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        holder.bind(myDataSet[position])
+        holder.bind(myDataSet[position], context)
 
         holder.binding.singleCardHitbox.setOnClickListener {
             onCardClickListener.clickedCategory(myDataSet[position].name)
@@ -63,10 +66,13 @@ class CategoriesAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(card: SingleCategory) {
+        fun bind(card: SingleCategory, context : Context) {
             binding.card = card
-//            binding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
-            binding.cardImage.setImageURI(pictureCoder.decodeB64ToBitmap(card.image))
+
+            Glide.with(context)
+                .load(pictureCoder.decodeB64ToBitmap(card.image))
+                .fitCenter()
+                .into(binding.cardImage)
         }
     }
 
