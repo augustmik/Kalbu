@@ -25,7 +25,7 @@
                 android:layout_width="@dimen/dialog_close_button_size"
                 android:layout_height="@dimen/dialog_close_button_size"
                 android:src="@drawable/ic_close_black_24dp"
-                android:tint="@color/colorCards"
+                android:tint="@color/colorTitle"
                 android:background="@drawable/delete_item_shape_oval"
                 android:visibility="gone"
                 android:elevation="@dimen/delete_card_button_elevation"
