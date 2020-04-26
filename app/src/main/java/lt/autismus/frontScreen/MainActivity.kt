@@ -261,7 +261,12 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
             false
         )
         createDialogBinding.card = cardItem
-        createDialogBinding.cardIv.setImageURI(image)
+
+        Glide.with(this)
+            .load(image)
+            .fitCenter()
+            .into(createDialogBinding.cardIv)
+
         createCardDialog.setContentView(createDialogBinding.root)
         createCardDialog.show()
         createDialogBinding.acceptButton.setOnClickListener {
@@ -292,7 +297,12 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
             false
         )
         createDialogCatBinding.card = categoryItem
-        createDialogCatBinding.cardIv.setImageURI(image)
+
+        Glide.with(this)
+            .load(image)
+            .fitCenter()
+            .into(createDialogCatBinding.cardIv)
+
         createCardDialog.setContentView(createDialogCatBinding.root)
         createCardDialog.show()
         createDialogCatBinding.acceptButton.setOnClickListener {
