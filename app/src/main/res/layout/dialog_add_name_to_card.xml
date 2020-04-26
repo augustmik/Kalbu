@@ -52,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/delete_card_negative_text_size"
                 android:textColor="@color/colorPrimaryDark"
+                android:textAllCaps="true"
                 android:text="@string/create_card_button_cancel"
                 app:layout_constraintEnd_toStartOf="@id/accept_button"
                 app:layout_constraintTop_toBottomOf="@id/card_text_hitbox" />
