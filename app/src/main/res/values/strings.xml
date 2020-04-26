@@ -2,11 +2,12 @@
     <string name="app_name">Autismus</string>
     <string name="settings_parental_mode">Tėvų rėžimas</string>
     <string name="settings_about">Apie</string>
-    <string name="settings_download_images">Parsisiųsti paveiklėlių</string>
+    <string name="settings_download_images">Parsisiųsti paveikslėlių</string>
     <string name="story_now">Dabar</string>
     <string name="story_then">Po to</string>
 
     <string name="create_card_hint">Korteles pavadinimas</string>
+    <string name="create_category_hint">Kategorijos pavadinimas</string>
     <string name="create_card_button_cancel">Atšaukti</string>
     <string name="create_card_button_accept">Pateikti</string>
 
