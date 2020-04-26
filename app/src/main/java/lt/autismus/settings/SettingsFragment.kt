@@ -8,7 +8,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import lt.autismus.R
 
-
 class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

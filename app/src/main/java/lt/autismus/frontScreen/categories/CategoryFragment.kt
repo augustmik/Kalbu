@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import lt.autismus.R
 import lt.autismus.dagger.CustomViewModelFactory
-import lt.autismus.databinding.DialogDeleteCardBinding
 import lt.autismus.databinding.DialogDeleteCategoryBinding
 import lt.autismus.databinding.FragmentItemListBinding
 import lt.autismus.frontScreen.MainActivity
