@@ -10,16 +10,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorItemBackground">
 
         <TextView
             android:id="@+id/delete_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/delete_card_question_text_size"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Ar tikrai norite ištrinti?" />
+            android:text="@string/delete_card_question" />
 
         <include
             android:id="@+id/card_view"
@@ -43,7 +45,7 @@
             android:id="@+id/accept_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_card_button_accept"
+            android:text="@string/delete_card_button_yes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_view"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,8 +2,10 @@
 <resources>
     <color name="colorPrimary">#b8e6e0</color>
     <color name="colorPrimaryDark">#87b4ae</color>
+<!--    color dark last green #87b4ae-->
     <color name="colorAccent">#e6b8be</color>
     <color name="colorTitle">#000000</color>
-    <color name="colorItemBackground">#cacbca</color>
+    <color name="colorItemBackground">#E1e2e1</color>
+    <color name="colorItemBackgroundLastGray">#cacbca</color>
     <color name="colorCards">#FFFFFF</color>
 </resources>

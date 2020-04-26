@@ -21,4 +21,6 @@
     <dimen name="stories_then_now_text_size">20sp</dimen>
     <dimen name="stories_card_width">320dp</dimen>
     <dimen name="stories_card_height">247dp</dimen>
+
+    <dimen name="delete_card_question_text_size">20sp</dimen>
 </resources>
