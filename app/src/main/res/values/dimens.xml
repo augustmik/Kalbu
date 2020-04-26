@@ -23,4 +23,5 @@
     <dimen name="stories_card_height">247dp</dimen>
 
     <dimen name="delete_card_question_text_size">20sp</dimen>
+    <dimen name="delete_card_negative_text_size">14sp</dimen>
 </resources>

@@ -2,6 +2,8 @@ package lt.autismus.frontScreen.cards
 
 import android.app.Dialog
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -116,6 +118,7 @@ class CardsFragment constructor(
 //        dialogDeleteBinding.cardView.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(card.image))
         dialogDeleteBinding.cardView.cardImage.setImageURI(pictureCoder.decodeB64ToBitmap(card.image))
         dialogDeleteBinding.cardView.card = card
+        deleteCardDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         deleteCardDialog.setContentView(dialogDeleteBinding.root)
         deleteCardDialog.show()
     }
