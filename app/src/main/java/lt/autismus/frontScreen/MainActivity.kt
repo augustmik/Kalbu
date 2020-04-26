@@ -17,6 +17,7 @@ import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerAppCompatActivity
+import lt.autismus.BIGGER_DIM_AMOUNT
 import lt.autismus.PICK_GALLERY_REQUEST_CODE
 import lt.autismus.R
 import lt.autismus.TAKE_PICTURE_REQUEST_CODE
@@ -347,6 +348,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
 //        createEnlargerDialogBinding.cardImage.setImageBitmap(pictureCoder.decodeB64ToBitmap(cardItem.image))
         createEnlargerDialogBinding.cardImage.setImageURI(pictureCoder.decodeB64ToBitmap(cardItem.image))
         createEnlargerDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        createEnlargerDialog.window?.setDimAmount(BIGGER_DIM_AMOUNT)
         createEnlargerDialog.setContentView(createEnlargerDialogBinding.root)
         createEnlargerDialog.show()
     }
