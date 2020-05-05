@@ -15,6 +15,10 @@ class FirstLaunchLoader(val context: Context) {
             SingleCategory(
                 "Maistas",
                 getDrawableUriString(R.drawable.preload_food)
+            ),
+            SingleCategory(
+                "Namai",
+                getDrawableUriString(R.drawable.preload_home)
             )
         )
     }
@@ -41,6 +45,26 @@ class FirstLaunchLoader(val context: Context) {
                 image = getDrawableUriString(R.drawable.preload_food_soup),
                 title = "Sriuba",
                 category = "Maistas"
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_home_bathtub),
+                title = "Vonia",
+                category = "Namai"
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_home_bed),
+                title = "Lova",
+                category = "Namai"
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_home_fridge),
+                title = "Šaldytuvas",
+                category = "Namai"
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_home_toilet),
+                title = "Tualetas",
+                category = "Namai"
             )
         )
     }
