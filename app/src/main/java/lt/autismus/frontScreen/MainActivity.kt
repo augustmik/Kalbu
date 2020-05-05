@@ -18,10 +18,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import dagger.android.support.DaggerAppCompatActivity
-import lt.autismus.BIGGER_DIM_AMOUNT
-import lt.autismus.PICK_GALLERY_REQUEST_CODE
-import lt.autismus.R
-import lt.autismus.TAKE_PICTURE_REQUEST_CODE
+import lt.autismus.*
 import lt.autismus.dagger.CustomViewModelFactory
 import lt.autismus.databinding.*
 import lt.autismus.frontScreen.cards.CardsFragment
@@ -85,7 +82,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         nameOfShared = getString(R.string.parental_mode_name)
         resetParentalMode()
         selectedCategoryName = getString(R.string.default_category_name)
-
+        checkForFirstLaunch()
         binding.createCardButton.setOnClickListener {
             //launches create a Stories window
             val intent = Intent(this, StoryActivity::class.java)
@@ -97,6 +94,13 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
             startActivity(intent)
         }
         setupDialog()
+    }
+
+    private fun checkForFirstLaunch(){
+        if (sharedPrefs.getBoolean(IS_FIRST_TIME_LAUNCH_PREF, true)){
+            mainActViewModel.fistTimeLaunchLoader(this)
+            sharedPrefs.edit().putBoolean(IS_FIRST_TIME_LAUNCH_PREF, false).apply()
+        }
     }
 
     private fun resetParentalMode() {

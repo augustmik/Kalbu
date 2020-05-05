@@ -1,5 +1,6 @@
 package lt.autismus.frontScreen
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +29,12 @@ class MainActivityViewModel @Inject constructor(
                 cards[index].image = images[index]
             }
             repository.addCategoryToDB(cards)
+        }
+    }
+
+    fun fistTimeLaunchLoader(context: Context){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.firstLaunchLoader(context)
         }
     }
 }

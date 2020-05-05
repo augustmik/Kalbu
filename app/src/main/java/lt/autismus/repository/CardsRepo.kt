@@ -1,5 +1,6 @@
 package lt.autismus.repository
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import lt.autismus.roomDb.RoomDBService
@@ -41,5 +42,11 @@ class CardsRepo @Inject constructor(
 
     suspend fun deleteCategory(categoryName: String){
         _allCategories.postValue(roomService.deleteCategory(categoryName).asListSingleCategory())
+    }
+
+    suspend fun firstLaunchLoader(context: Context){
+        val loader = FirstLaunchLoader(context)
+        addCategoryToDB(loader.getCat())
+
     }
 }
