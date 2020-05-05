@@ -47,6 +47,6 @@ class CardsRepo @Inject constructor(
     suspend fun firstLaunchLoader(context: Context){
         val loader = FirstLaunchLoader(context)
         addCategoryToDB(loader.getCat())
-
+        roomService.addAllCards(loader.getCards().asListCardDB())
     }
 }
