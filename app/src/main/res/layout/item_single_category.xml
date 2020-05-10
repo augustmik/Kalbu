@@ -5,7 +5,7 @@
     <data>
         <variable
             name="card"
-            type="lt.autismus.singleUnits.SingleCategory" />
+            type="lt.kalbu.singleUnits.SingleCategory" />
     </data>
     <androidx.cardview.widget.CardView
         android:id="@+id/single_card_hitbox"

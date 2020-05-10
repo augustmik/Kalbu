@@ -6,7 +6,7 @@
 
         <variable
             name="card"
-            type="lt.autismus.singleUnits.SingleCategory" />
+            type="lt.kalbu.singleUnits.SingleCategory" />
     </data>
 
     <FrameLayout

@@ -5,10 +5,10 @@
     <data>
         <variable
             name="nowCardSelection"
-            type="lt.autismus.singleUnits.SingleCard"/>
+            type="lt.kalbu.singleUnits.SingleCard"/>
         <variable
             name="thenCardSelection"
-            type="lt.autismus.singleUnits.SingleCard"/>
+            type="lt.kalbu.singleUnits.SingleCard"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
