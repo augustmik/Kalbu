@@ -26,6 +26,8 @@
 
     <dimen name="stories_card_width_smaller">304dp</dimen>
     <dimen name="stories_card_height_smaller">235dp</dimen>
+    <dimen name="stories_card_h_weight">6</dimen>
+    <string name="stories_card_image_ratio">14:9</string>
 
     <dimen name="delete_card_question_text_size">20sp</dimen>
     <dimen name="delete_card_negative_text_size">14sp</dimen>
