@@ -2,11 +2,12 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
     <SwitchPreferenceCompat
         app:key="@string/parental_mode_name"
-        app:summary="Išjungia tokį funkcionalumą kaip naujų kortelių kūrimas ir tt."
-        app:title="Tėvo rėžimas" />
+        app:summary="Išjungia tik tėvams pasiekiamą funkcionalumą (kortelių kūrimas ir pan.)"
+        app:title="Tėvų režimas" />
 
     <Preference
         app:key="download_images"
+        app:summary="Siunčiama iš flaticon.com internetinio puslapio"
         app:title="@string/settings_download_images" />
 
     <Preference
