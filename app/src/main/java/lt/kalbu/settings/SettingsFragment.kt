@@ -12,6 +12,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
+        findPreference<Preference>("about")?.summary = "versija " + requireContext().packageManager.getPackageInfo(requireContext().packageName, 0).versionName
     }
 
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
