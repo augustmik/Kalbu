@@ -50,7 +50,7 @@ class FirstLaunchLoader(val context: Context) {
             ),
             SingleCard(
                 image = getDrawableUriString(R.drawable.tutorial_create_stories),
-                title = "Dabar - PoTo istorijų kūrimas",
+                title = "Dabar - Po to istorijų kūrimas",
                 category = preloadTutorial
             ),
             SingleCard(
