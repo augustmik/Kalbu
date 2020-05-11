@@ -50,12 +50,13 @@ class FirstLaunchLoader(val context: Context) {
             ),
             SingleCard(
                 image = getDrawableUriString(R.drawable.tutorial_create_stories),
-                title = "Dabar - Po to istorijų kūrimas",
+                title = "Dabar - Po to istorijų kūrimas\n(Spauskite tuščią kortelę)",
                 category = preloadTutorial
             ),
             SingleCard(
                 image = getDrawableUriString(R.drawable.tutorial_delete),
-                title = "Kortelių ar Kategorijų naikinimas",
+                title = "Kortelių ar Kategorijų naikinimas\n" +
+                        "(Spauskite X norint ištrinti)",
                 category = preloadTutorial
             ),
             SingleCard(
