@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class RoomDBService(context: Context) {
     private val db = Room.databaseBuilder(
         context,
-        AppDatabase::class.java, "autismus_db"
+        AppDatabase::class.java, "kalbu_db"
     )
         .fallbackToDestructiveMigration()
         .build()
