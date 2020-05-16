@@ -8,7 +8,7 @@ import lt.kalbu.singleUnits.SingleCard
 import lt.kalbu.singleUnits.SingleCategory
 
 class FirstLaunchLoader(val context: Context) {
-    private val preloadTutorial = "Apmokymai"
+    private val preloadTutorial = "Naudojimo paaiškinimai\n(Išmokus ištrink mane!)"
     private val preloadFood = "Maistas"
     private val preloadHome = "Namai"
 
@@ -50,13 +50,13 @@ class FirstLaunchLoader(val context: Context) {
             ),
             SingleCard(
                 image = getDrawableUriString(R.drawable.tutorial_create_stories),
-                title = "Dabar - Po to istorijų kūrimas\n(Spauskite tuščią kortelę)",
+                title = "Dabar - Po to istorijų kūrimas\n(Atidarius langą spausk tuščią kortelę)",
                 category = preloadTutorial
             ),
             SingleCard(
                 image = getDrawableUriString(R.drawable.tutorial_delete),
                 title = "Kortelių ar Kategorijų naikinimas\n" +
-                        "(Spauskite X norint ištrinti)",
+                        "(Spausk X norint ištrinti)",
                 category = preloadTutorial
             ),
             SingleCard(
