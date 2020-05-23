@@ -29,4 +29,15 @@
     <string name="select_source_from_galery_text">Pasirinkti iš galerijos</string>
 
     <string name="add_more_images_link">https://www.flaticon.com/</string>
+
+    <string name="about_app_name">Programėlė Kalbu</string>
+    <string name="about_about">Programėlę kūrė Augustas Mikulėnas.\n
+Programėlė „Kalbu“ yra alternatyviosios komunikacijos PECS programėlė teikianti vartotojui visišką laisvę kurti, trinti ar kitaip tvarkyti korteles.\n
+Ši sistema yra kurta bendradarbiaujant su VšĮ Vilniaus Universiteto ligoninės Santaros klinikų Vaiko raidos centro specialistais.</string>
+
+    <string name="about_attribution_lt">Paleidžiant sistemą pirmą kartą atsirandančios kortelės yra paleidžiamos su paveiksliukais darytais „Freepik“ iš www.flaticon.com</string>
+    <string name="about_attribution_en">On first launch cards are loaded with icons made by Freepik from www.flaticon.com</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -20,7 +20,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             openCustomChromeTabsPage(Uri.parse(getString(R.string.add_more_images_link)))
         }
         if (preference?.key == "about") {
-            //TODO: handle preferences here
+            (activity as SettingsActivity).openAboutPage()
         }
         return super.onPreferenceTreeClick(preference)
     }

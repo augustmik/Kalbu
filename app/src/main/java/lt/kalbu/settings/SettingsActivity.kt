@@ -11,6 +11,7 @@ class SettingsActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var factory: CustomViewModelFactory
+    private var isAboutPageOpen = false
 
     private val settingsViewModel by lazy {
         ViewModelProvider(this, factory).get(SettingsViewModel::class.java)
@@ -30,8 +31,24 @@ class SettingsActivity : DaggerAppCompatActivity() {
             .commit()
     }
 
+    fun openAboutPage() {
+        isAboutPageOpen = true
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.settings_container, AboutFragment())
+            .commit()
+    }
+
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        if (isAboutPageOpen) {
+            isAboutPageOpen = false
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.settings_container, SettingsFragment())
+                .commit()
+        } else {
+            onBackPressed()
+        }
         return true
     }
 }
