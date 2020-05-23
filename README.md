@@ -14,7 +14,7 @@ https://install.appcenter.ms/users/augustmik/apps/autismus/distribution_groups/g
 ## Demonstracinis sistemos vaizdo įrašas
 
 Demonstracinį filmuką galima rasti paspaudus žemiau esančią nuorodą  
-//add link to movie
+https://drive.google.com/open?id=1rhXZYQOkDk1u6aWTGUI0SjY_yvMv-mfL
 
 ## Bakalaurinio darbo dokumentas
 
