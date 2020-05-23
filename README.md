@@ -9,7 +9,6 @@ Programėlė „Kalbu“ yra alternatyviosios komunikacijos PECS programėlė te
 
 Parsisiųsti sistemos vykdomąjį faila galima nuskanavus žemiau pateiktą QR kodą arba paspaudus žemiau esančią nuorodą:
 ![QR Code](/downloadFromAppCenterQRCode.png)
-
 https://install.appcenter.ms/users/augustmik/apps/autismus/distribution_groups/github%20release
 
 ## Demonstracinis sistemos vaizdo įrašas
