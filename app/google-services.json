@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "958112396254",
+    "firebase_url": "https://kalbu-app.firebaseio.com",
+    "project_id": "kalbu-app",
+    "storage_bucket": "kalbu-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958112396254:android:0372510f2e2beb77a0e34f",
+        "android_client_info": {
+          "package_name": "lt.kalbu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958112396254-1ngit4e0ebnslstd5rojprdrp2sfp19m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq0AlMvmxFiU92uO5axtKdMZPxvvZoFZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958112396254-1ngit4e0ebnslstd5rojprdrp2sfp19m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
