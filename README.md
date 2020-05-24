@@ -3,7 +3,7 @@
 Programėlė „Kalbu“ yra alternatyviosios komunikacijos PECS programėlė teikianti vartotojui visišką laisvę kurti, trinti ar kitaip tvarkyti korteles.  
 Ši sistema buvo kurta tiriant „PECS“ sistemų programėlių skirtų autizmo spektro sutrikimą turintiems vaikams panaudojamumą bei bendradarbiaujant su VšĮ Vilniaus Universiteto ligoninės Santaros klinikų Vaiko raidos centro specialistais.  
   
-Šiame kataloge pateikiamas sukurtos programėlės „Kalbu“ programinis kodas, nuoroda kaip gauti sistemos vykdomąjį failą, demonstracinis sistemos vaizdo įrašas bei pats bakalaurinio baigiamojo darbo dokumentas.
+Šiame kataloge pateikiamas sukurtos Android programėlės „Kalbu“ programinis kodas, nuoroda kaip gauti sistemos vykdomąjį failą, demonstracinis sistemos vaizdo įrašas bei pats bakalaurinio baigiamojo darbo dokumentas.
 
 ## Parsisiuntimas/Įrašymas
 
