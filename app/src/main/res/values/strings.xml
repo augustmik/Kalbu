@@ -21,6 +21,7 @@
     <string name="card_selection_extra_intent">card_selection</string>
 
     <string name="category_already_exists_error">Tokia kategorija jau egzistuoja.</string>
+    <string name="category_name_empty_error">Klaida! Pavadinimas tuščias!</string>
 
     <string name="category_page_title">Kategorijos</string>
 
@@ -37,7 +38,4 @@ Programėlė „Kalbu“ yra alternatyviosios komunikacijos PECS programėlė te
 
     <string name="about_attribution_lt">Paleidžiant sistemą pirmą kartą atsirandančios kortelės yra paleidžiamos su paveiksliukais darytais „Freepik“ iš www.flaticon.com</string>
     <string name="about_attribution_en">On first launch cards are loaded with icons made by Freepik from www.flaticon.com</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

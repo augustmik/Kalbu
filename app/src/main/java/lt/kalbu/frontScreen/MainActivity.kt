@@ -152,7 +152,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
                 } catch (ex: IOException) {
                     Toast.makeText(
                         this,
-                        "Klaida saugant nuotrauka.",
+                        "Klaida saugant nuotrauką.",
                         Toast.LENGTH_LONG
                     ).show()
                     null
@@ -311,7 +311,7 @@ class MainActivity @Inject constructor() : DaggerAppCompatActivity(), DialogList
         createCardDialog.show()
         createDialogCatBinding.acceptButton.setOnClickListener {
             if (categoryItem.name == getString(R.string.default_category_name)) {
-                Toast.makeText(this, "Klaida! Pavadinimas tuscias!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.category_name_empty_error), Toast.LENGTH_LONG).show()
             } else {
                 if (checkIfNameDoesntExist(categoryItem.name)) {
                     createCardDialog.dismiss()
