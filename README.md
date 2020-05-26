@@ -19,4 +19,4 @@ https://drive.google.com/open?id=1rhXZYQOkDk1u6aWTGUI0SjY_yvMv-mfL
 ## Bakalaurinio darbo dokumentas
 
 Pilną bakalaurinio baigiamojo darbo dokumentą galima rasti paspaudus žemiau esančią nuorodą  
-//add link to complete pdf
+[Nuoroda į .pdf dokumentą](/MikulėnasAugustasBD2020.pdf)
