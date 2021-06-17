@@ -334,10 +334,6 @@ class FirstLaunchLoader(val context: Context) {
             ),
 
             //preloadFood
-
-            
-
-
             SingleCard(
                 image = getDrawableUriString(R.drawable.preload_food_apple),
                 title = "Obuolys",
@@ -358,6 +354,8 @@ class FirstLaunchLoader(val context: Context) {
                 title = "Sriuba",
                 category = preloadFood
             ),
+
+            //preloadHome
             SingleCard(
                 image = getDrawableUriString(R.drawable.preload_home_bathtub),
                 title = "Vonia",
@@ -377,6 +375,203 @@ class FirstLaunchLoader(val context: Context) {
                 image = getDrawableUriString(R.drawable.preload_home_toilet),
                 title = "Tualetas",
                 category = preloadHome
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_home_table),
+                title = "Stalas",
+                category = preloadHome
+            ),
+
+            //preloadPeople
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_people_parents),
+                title = "Tėvai",
+                category = preloadPeople
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_people_grandma),
+                title = "Močiutė",
+                category = preloadPeople
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_people_grandfather),
+                title = "Senelis",
+                category = preloadPeople
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_people_uncle),
+                title = "Dėdė",
+                category = preloadPeople
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_people_kids),
+                title = "Vaikai",
+                category = preloadPeople
+            ),
+
+            //preloadPlaces
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_places_school),
+                title = "Mokykla",
+                category = preloadPlaces
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_places_hospital),
+                title = "Ligoninė",
+                category = preloadPlaces
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_places_field),
+                title = "Laukas",
+                category = preloadPlaces
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_places_park),
+                title = "Parkas",
+                category = preloadPlaces
+            ),
+
+            //preloadTransport
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_transport_car),
+                title = "Automobilis",
+                category = preloadTransport
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_transport_bus),
+                title = "Autobusas",
+                category = preloadTransport
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_transport_trolleybus),
+                title = "Troleibusas",
+                category = preloadTransport
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_transport_cruise),
+                title = "Laivas",
+                category = preloadTransport
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_transport_plane),
+                title = "Lėktuvas",
+                category = preloadTransport
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_transport_train),
+                title = "Traukinys",
+                category = preloadTransport
+            ),
+
+            //preloadColors
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_color_blue),
+                title = "Mėlyna",
+                category = preloadColors
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_color_green),
+                title = "Žalia",
+                category = preloadColors
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_color_orange),
+                title = "Oranžinė",
+                category = preloadColors
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_color_red),
+                title = "Raudona",
+                category = preloadColors
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_color_yellow),
+                title = "Geltona",
+                category = preloadColors
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_color_black),
+                title = "Juoda",
+                category = preloadColors
+            ),
+
+            //preloadShapes
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_shapes_circle),
+                title = "Apskritimas",
+                category = preloadShapes
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_shapes_square),
+                title = "Kvadratas",
+                category = preloadShapes
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_shapes_triangle),
+                title = "Trikampis",
+                category = preloadShapes
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_shapes_star),
+                title = "Žvaigždė",
+                category = preloadShapes
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_shapes_hexagon),
+                title = "Šešiakampis",
+                category = preloadShapes
+            ),
+
+            //preloadNumbers
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_numbers_1),
+                title = "Vienas",
+                category = preloadNumbers
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_numbers_2),
+                title = "Du",
+                category = preloadNumbers
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_numbers_3),
+                title = "Trys",
+                category = preloadNumbers
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_numbers_4),
+                title = "Keturi",
+                category = preloadNumbers
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_numbers_5),
+                title = "Penki",
+                category = preloadNumbers
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_numbers_6),
+                title = "Šeši",
+                category = preloadNumbers
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_numbers_7),
+                title = "Septyni",
+                category = preloadNumbers
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_numbers_8),
+                title = "Aštuoni",
+                category = preloadNumbers
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_numbers_9),
+                title = "Devyni",
+                category = preloadNumbers
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_numbers_10),
+                title = "Dešimt",
+                category = preloadNumbers
             )
         )
     }
