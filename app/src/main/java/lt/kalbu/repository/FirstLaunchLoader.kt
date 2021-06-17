@@ -131,6 +131,213 @@ class FirstLaunchLoader(val context: Context) {
                         "(Spausk X norint ištrinti)",
                 category = preloadTutorial
             ),
+
+            //CommonTasks
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_common_sleep),
+                title = "Miegoti",
+                category = preloadCommonTasks
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_common_read),
+                title = "Skaityti",
+                category = preloadCommonTasks
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_common_write),
+                title = "Rašyti",
+                category = preloadCommonTasks
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_common_walk),
+                title = "Eiti",
+                category = preloadCommonTasks
+            ),
+
+            //preloadMusic
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_music_guitar),
+                title = "Gitara",
+                category = preloadMusic
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_music_violin),
+                title = "Smuikas",
+                category = preloadMusic
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_music_piano),
+                title = "Pianinas",
+                category = preloadMusic
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_music_flute),
+                title = "Dudelė",
+                category = preloadMusic
+            ),
+
+            //preloadGamesAndToys
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_toy_teddy),
+                title = "Meškiukas",
+                category = preloadGamesAndToys
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_toy_robot),
+                title = "Robotas",
+                category = preloadGamesAndToys
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_toy_train),
+                title = "Traukinys",
+                category = preloadGamesAndToys
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_toy_controller),
+                title = "Pultelis",
+                category = preloadGamesAndToys
+            ),
+
+            //preloadSport
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_sport_basketball),
+                title = "Krepšinis",
+                category = preloadSport
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_sport_football),
+                title = "Futbolas",
+                category = preloadSport
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_sport_bike),
+                title = "Dviratis",
+                category = preloadSport
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_sport_runner),
+                title = "Bėgimas",
+                category = preloadSport
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_sport_scooter),
+                title = "Paspirtukas",
+                category = preloadSport
+            ),
+
+            //preloadToolsAndKitchenware
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_tools_bowl),
+                title = "Dubuo",
+                category = preloadToolsAndKitchenware
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_tools_fork),
+                title = "Šakutė",
+                category = preloadToolsAndKitchenware
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_tools_knife),
+                title = "Peilis",
+                category = preloadToolsAndKitchenware
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_tools_plate),
+                title = "Lėkštė",
+                category = preloadToolsAndKitchenware
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_tools_spoon),
+                title = "Šaukštas",
+                category = preloadToolsAndKitchenware
+            ),
+
+            //preloadAnimals
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_animal_dog),
+                title = "Šuo",
+                category = preloadAnimals
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_animal_cat),
+                title = "Katė",
+                category = preloadAnimals
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_animal_bee),
+                title = "Bitė",
+                category = preloadAnimals
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_animal_cow),
+                title = "Karvė",
+                category = preloadAnimals
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_animal_turtle),
+                title = "Vėžlys",
+                category = preloadAnimals
+            ),
+
+            //preloadClothing
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_clothing_polo),
+                title = "Marškinėliai",
+                category = preloadClothing
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_clothing_hawaiian),
+                title = "Marškiniai",
+                category = preloadClothing
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_clothing_jeans),
+                title = "Džinsai",
+                category = preloadClothing
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_clothing_sweater),
+                title = "Megztinis",
+                category = preloadClothing
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_clothing_sweatpants),
+                title = "Treninginės kelnės",
+                category = preloadClothing
+            ),
+
+            //preloadEmotions
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_emotions_happy),
+                title = "Laimingas",
+                category = preloadEmotions
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_emotions_sad),
+                title = "Liūdnas",
+                category = preloadEmotions
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_emotions_angry),
+                title = "Piktas",
+                category = preloadEmotions
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_emotions_neutral),
+                title = "Neutralus",
+                category = preloadEmotions
+            ),
+            SingleCard(
+                image = getDrawableUriString(R.drawable.preload_emotions_cool),
+                title = "Krūtas",
+                category = preloadEmotions
+            ),
+
+            //preloadFood
+
+            
+
+
             SingleCard(
                 image = getDrawableUriString(R.drawable.preload_food_apple),
                 title = "Obuolys",
